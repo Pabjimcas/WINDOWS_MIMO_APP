@@ -5,5 +5,8 @@
     xmlns:local="using:WINDOWS_MIMO_APP_2"
     xmlns:viewmodel="using:WINDOWS_MIMO_APP_2.ViewModels.Base"
     RequestedTheme="Light">
-
+    
+    <Application.Resources>
+        <viewmodel:ViewModelLocator x:Name="vmLocator"></viewmodel:ViewModelLocator>
+    </Application.Resources>
 </Application>
