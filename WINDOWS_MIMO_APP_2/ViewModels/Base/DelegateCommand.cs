@@ -8,31 +8,33 @@
     using System.Windows.Input;
     public class DelegateCommand : ICommand
     {
-        private Action execute;
-        private Func<bool> canExecute;
+        private Action executeAction;
+        private Func<bool> canExecuteAction;
 
+        public DelegateCommand(Action exec) : this(exec, null) { }
+      
         public DelegateCommand(Action exec, Func<bool> canExec)
         {
-            this.execute = exec;
-            this.canExecute = canExec;
+            this.executeAction = exec;
+            this.canExecuteAction = canExec;
         }
 
         public bool CanExecute(object parameter)
         {
-            if (canExecute == null)
+            if (canExecuteAction == null)
             {
                 return true;
             }
-            return canExecute();
+            return canExecuteAction();
         }
 
         public event EventHandler CanExecuteChanged;
 
         public void Execute(object parameter)
         {
-            if (execute != null)
+            if (executeAction != null)
             {
-                execute();
+                this.executeAction();
             }
         }
         public void RaiseCanExecuteChanged()

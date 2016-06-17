@@ -7,6 +7,6 @@
     RequestedTheme="Light">
     
     <Application.Resources>
-        <viewmodel:ViewModelLocator x:Name="vmLocator"></viewmodel:ViewModelLocator>
+        <viewmodel:ViewModelLocator x:Name="vmLocator" x:Key="Locator"/>
     </Application.Resources>
 </Application>

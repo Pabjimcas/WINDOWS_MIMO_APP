@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using Views;
     using Windows.UI.Xaml.Controls;
     public class NavigationService : INavigationService
     {
@@ -14,6 +15,17 @@
             if (AppFrame != null && AppFrame.CanGoBack)
                 AppFrame.GoBack();
         }
+        public void NavigateToRecipePage()
+        {
+            NavigateToRecipePage<Object>(null);
+        }
 
+        public void NavigateToRecipePage<T>(T argument)
+        {
+            if (AppFrame != null)
+                AppFrame.Navigate(typeof(RecipePage), argument);
+        }
+
+        
     }
 }
