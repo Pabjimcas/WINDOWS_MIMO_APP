@@ -9,8 +9,12 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Button Content="Recipe Description" Command="{Binding GoToRecipePageCommand}" HorizontalAlignment="Center" Margin="109,230,108,378"/>
-        <Button Content="Recipe List" Command="{Binding GoToRecipeListPageCommand}" HorizontalAlignment="Center" Margin="109,267,108,341"/>
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Button Content="Recipe Description" Grid.Row="0" Command="{Binding GoToRecipePageCommand}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Button Content="Recipe List" Grid.Row="1" Command="{Binding GoToRecipeListPageCommand}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
     </Grid>
 </base:ViewBase>

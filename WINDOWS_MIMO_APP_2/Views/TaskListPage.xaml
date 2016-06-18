@@ -9,9 +9,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock x:Name="texto" Text="{Binding Message}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="32"/>
-        <TextBlock Text="PAGINA Tasks" Margin="10,206,-10,378"/>
-        <Button x:Name="TaskDescription" Content="Tarea 1" Command="{Binding GoToTaskPageCommand}" HorizontalAlignment="Left" Margin="158,405,0,0" VerticalAlignment="Top"/>
-    </Grid>
+    <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <TextBlock x:Name="texto" RelativePanel.AlignHorizontalCenterWithPanel="True" Text="{Binding Message}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="32"/>
+        <TextBlock Text="PAGINA Tasks" RelativePanel.Below="TaskDescription"/>
+        <Button x:Name="TaskDescription" RelativePanel.Below="texto" Content="Tarea 1" Command="{Binding GoToTaskPageCommand}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+    </RelativePanel>
 </base:ViewBase>

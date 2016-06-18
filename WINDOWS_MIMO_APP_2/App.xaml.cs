@@ -65,8 +65,8 @@ namespace WINDOWS_MIMO_APP_2
                 // Place the frame in the current Window
                 Window.Current.Content = rootFrame;
 
-                // Register a handler for BackRequested events and set the
-                // visibility of the Back button
+                //// Register a handler for BackRequested events and set the
+                //// visibility of the Back button
                 SystemNavigationManager.GetForCurrentView().BackRequested += OnBackRequested;
 
                 SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
