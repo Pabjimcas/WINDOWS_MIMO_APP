@@ -25,7 +25,27 @@
             if (AppFrame != null)
                 AppFrame.Navigate(typeof(RecipePage), argument);
         }
+        public void NavigateToRecipeListPage()
+        {
+            NavigateToRecipeListPage<Object>(null);
+        }
 
-        
+        public void NavigateToRecipeListPage<T>(T argument)
+        {
+            if (AppFrame != null)
+                AppFrame.Navigate(typeof(RecipeListPage), argument);
+        }
+        public void NavigateToTaskListPage()
+        {
+            NavigateToTaskListPage<Object>(null);
+        }
+
+        public void NavigateToTaskListPage<T>(T argument)
+        {
+            if (AppFrame != null)
+                AppFrame.Navigate(typeof(TaskListPage), argument);
+        }
+
+
     }
 }

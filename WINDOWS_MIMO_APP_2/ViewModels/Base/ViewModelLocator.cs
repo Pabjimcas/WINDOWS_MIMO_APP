@@ -17,6 +17,8 @@
             builder.RegisterType<NavigationService>().As<INavigationService>();
             builder.RegisterType<MainViewModel>();
             builder.RegisterType<RecipeViewModel>();
+            builder.RegisterType<RecipeListViewModel>();
+            builder.RegisterType<TaskListViewModel>();
 
             this.container = builder.Build();
         }
@@ -30,10 +32,14 @@
         {
             get { return this.container.Resolve<RecipeViewModel>(); }
         }
-       
-        //public RecipeViewModel RecipeVM
-        //{
-         //   get { return this.container.Resolve<RecipeViewModel>(); }
-        //}
+        public RecipeListViewModel RecipeListVM
+        {
+            get { return this.container.Resolve<RecipeListViewModel>(); }
+        }
+        public TaskListViewModel TaskListVM
+        {
+            get { return this.container.Resolve<TaskListViewModel>(); }
+        }
+
     }
 }

@@ -98,6 +98,8 @@
     <Compile Include="Services\NavigationService\INavigationService.cs" />
     <Compile Include="Services\NavigationService\NavigationService.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\TaskListViewModel.cs" />
+    <Compile Include="ViewModels\RecipeListViewModel.cs" />
     <Compile Include="ViewModels\RecipeViewModel.cs" />
     <Compile Include="Views\Base\ViewBase.cs" />
     <Compile Include="Views\MainPage.xaml.cs">
@@ -107,6 +109,12 @@
     <Compile Include="ViewModels\Base\DelegateCommand.cs" />
     <Compile Include="ViewModels\Base\ViewModelBase.cs" />
     <Compile Include="ViewModels\Base\ViewModelLocator.cs" />
+    <Compile Include="Views\TaskListPage.xaml.cs">
+      <DependentUpon>TaskListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RecipeListPage.xaml.cs">
+      <DependentUpon>RecipeListPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\RecipePage.xaml.cs">
       <DependentUpon>RecipePage.xaml</DependentUpon>
     </Compile>
@@ -133,6 +141,14 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="Views\MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\TaskListPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\RecipeListPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

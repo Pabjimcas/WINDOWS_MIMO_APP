@@ -16,16 +16,24 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
     {
         private INavigationService navService;
         private DelegateCommand goToRecipePageCommand;
-        
+        private DelegateCommand goToRecipeListPageCommand;
         public MainViewModel(INavigationService navService)
         {
             this.navService = navService;
+            this.goToRecipeListPageCommand = new DelegateCommand(GoToRecipeListPageExecute);
             this.goToRecipePageCommand = new DelegateCommand(GoToRecipePageExecute);
+           
         }
+
+        
 
         public ICommand GoToRecipePageCommand
         {
             get { return this.goToRecipePageCommand; }
+        }
+        public ICommand GoToRecipeListPageCommand
+        {
+            get { return this.goToRecipeListPageCommand; }
         }
 
         public override void OnNavigatedTo(NavigationEventArgs e)
@@ -37,6 +45,10 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
         private void GoToRecipePageExecute()
         {
             this.navService.NavigateToRecipePage("RecipePage");
+        }
+        private void GoToRecipeListPageExecute()
+        {
+            this.navService.NavigateToRecipeListPage("RecipeList");
         }
 
     }

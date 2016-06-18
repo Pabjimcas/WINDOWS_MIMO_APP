@@ -10,6 +10,7 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Button Content="Recipe Description" Command="{Binding GoToRecipePageCommand}" HorizontalAlignment="Center"/>
+        <Button Content="Recipe Description" Command="{Binding GoToRecipePageCommand}" HorizontalAlignment="Center" Margin="109,230,108,378"/>
+        <Button Content="Recipe List" Command="{Binding GoToRecipeListPageCommand}" HorizontalAlignment="Center" Margin="109,267,108,341"/>
     </Grid>
 </base:ViewBase>

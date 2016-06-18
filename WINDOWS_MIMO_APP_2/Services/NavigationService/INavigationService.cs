@@ -7,5 +7,10 @@
         void GoBack();
         void NavigateToRecipePage();
         void NavigateToRecipePage<T>(T argument);
+        void NavigateToRecipeListPage();
+        void NavigateToRecipeListPage<T>(T argument);
+        void NavigateToTaskListPage();
+        void NavigateToTaskListPage<T>(T argument);
+       
     }
 }
