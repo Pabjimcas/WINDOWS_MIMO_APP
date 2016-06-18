@@ -10,25 +10,18 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
     using System.Threading.Tasks;
     using WINDOWS_MIMO_APP_2.ViewModels.Base;
     using Windows.UI.Xaml.Navigation;
-    using System.Windows.Input;
-    public class TaskListViewModel : ViewModelBase
+
+    public class TaskViewModel : ViewModelBase
     {
         private string message;
         private INavigationService   navService;
-        private DelegateCommand goToTaskPageCommand;
 
-        public TaskListViewModel(INavigationService navService)
+        public TaskViewModel(INavigationService navService)
         {
             this.navService = navService;
-            this.goToTaskPageCommand = new DelegateCommand(GoToTaskPageExecute);
-            Message = "Welcome to the task List page";
-        }
-        public ICommand GoToTaskPageCommand
-        {
-            get { return this.goToTaskPageCommand; }
+            Message = "Welcome to the task page";
         }
 
-        
 
         public string Message
         {
@@ -52,10 +45,6 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
         public override void GoBackExecute()
         {
             base.GoBackExecute();
-        }
-        private void GoToTaskPageExecute()
-        {
-            this.navService.NavigateToTaskPage("TASK");
         }
     }
 }

@@ -11,6 +11,8 @@
         void NavigateToRecipeListPage<T>(T argument);
         void NavigateToTaskListPage();
         void NavigateToTaskListPage<T>(T argument);
-       
+        void NavigateToTaskPage();
+        void NavigateToTaskPage<T>(T argument);
+
     }
 }

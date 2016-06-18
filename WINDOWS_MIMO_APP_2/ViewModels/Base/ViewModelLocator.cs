@@ -19,6 +19,7 @@
             builder.RegisterType<RecipeViewModel>();
             builder.RegisterType<RecipeListViewModel>();
             builder.RegisterType<TaskListViewModel>();
+            builder.RegisterType<TaskViewModel>();
 
             this.container = builder.Build();
         }
@@ -39,6 +40,10 @@
         public TaskListViewModel TaskListVM
         {
             get { return this.container.Resolve<TaskListViewModel>(); }
+        }
+        public TaskViewModel TaskVM
+        {
+            get { return this.container.Resolve<TaskViewModel>(); }
         }
 
     }

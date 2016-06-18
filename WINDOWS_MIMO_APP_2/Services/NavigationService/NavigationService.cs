@@ -45,6 +45,16 @@
             if (AppFrame != null)
                 AppFrame.Navigate(typeof(TaskListPage), argument);
         }
+        public void NavigateToTaskPage()
+        {
+            NavigateToTaskPage<Object>(null);
+        }
+
+        public void NavigateToTaskPage<T>(T argument)
+        {
+            if (AppFrame != null)
+                AppFrame.Navigate(typeof(TaskPage), argument);
+        }
 
 
     }
