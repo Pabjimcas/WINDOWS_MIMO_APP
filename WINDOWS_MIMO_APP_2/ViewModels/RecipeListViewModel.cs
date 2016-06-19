@@ -12,6 +12,7 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
     using Windows.UI.Xaml.Navigation;
     using System.Collections.ObjectModel;
     using Models;
+    using Windows.UI.Xaml.Controls;
     public class RecipeListViewModel : ViewModelBase
     {
         private IRecipeService recipeService;
@@ -19,6 +20,7 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
         private INavigationService   navService;
         private DelegateCommand loadRecipeListCommand;
         private ObservableCollection<RecipeList> recipes;
+        
 
         public RecipeListViewModel(INavigationService navService,IRecipeService recipeService)
         {
@@ -27,6 +29,22 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
             loadRecipeListCommand = new DelegateCommand(LoadRecipeList, null);
             Message = "Welcome to the recipe List page";
         }
+        public void ListItemClicked(object sender, object parameter)
+        {
+            var arg = parameter as ItemClickEventArgs;
+            var recipeItemlist = arg.ClickedItem as RecipeList;
+            if (recipeItemlist != null)
+            {
+                var st =""+recipeItemlist.id ;
+                this.navService.NavigateToRecipePage(st);
+            }else
+            {
+                this.navService.NavigateToRecipePage("1");
+            }
+            
+        }
+
+        
 
         private async void LoadRecipeList()
         {

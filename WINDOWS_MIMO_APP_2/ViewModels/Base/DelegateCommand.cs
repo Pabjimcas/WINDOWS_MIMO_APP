@@ -6,6 +6,8 @@
     using System.Text;
     using System.Threading.Tasks;
     using System.Windows.Input;
+    using Windows.UI.Xaml.Controls;
+
     public class DelegateCommand : ICommand
     {
         private Action executeAction;
@@ -25,6 +27,7 @@
             this.loadRecipes = loadRecipes;
             this.p = p;
         }
+
 
         public bool CanExecute(object parameter)
         {
