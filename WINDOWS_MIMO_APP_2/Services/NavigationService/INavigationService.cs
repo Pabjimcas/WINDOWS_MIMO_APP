@@ -13,6 +13,8 @@
         void NavigateToTaskListPage<T>(T argument);
         void NavigateToTaskPage();
         void NavigateToTaskPage<T>(T argument);
+        void NavigateToSplitTaskPage();
+        void NavigateToSplitTaskPage<T>(T argument);
 
     }
 }

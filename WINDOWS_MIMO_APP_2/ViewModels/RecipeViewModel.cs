@@ -25,9 +25,7 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
         private Recipe recipe;
 
         private string title;
-
-        
-
+        private DelegateCommand goToSplitTaskPageCommand;
 
         public RecipeViewModel(INavigationService navService, IRecipeService recipeService, IDbService dbService)
         {
@@ -35,6 +33,7 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
             this.recipeService = recipeService;
             this.dbService = dbService;
             this.goToTaskListPageCommand = new DelegateCommand(GoToTaskListPageExecute);
+            this.goToSplitTaskPageCommand = new DelegateCommand(GoToSplitTaskPageExecute);
             loadRecipeCommand = new DelegateCommand(LoadRecipe, null);
             this.addToFavoritesCommand = new DelegateCommand(AddToFavoritesExecute);
             Message = "Welcome to the recipe page";
@@ -70,6 +69,10 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
         {
             get { return this.goToTaskListPageCommand; }
         }
+        public ICommand GoToSplitTaskPageCommand
+        {
+            get { return this.goToSplitTaskPageCommand; }
+        }
 
         public ICommand AddToFavoritesCommand
         {
@@ -89,12 +92,7 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
         }
         public string Title
         {
-            get
-            {
-                
-                    return title;
-           
-            }
+            get {return title;}
             set
             {
                 title = value;
@@ -119,6 +117,10 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
         private void GoToTaskListPageExecute()
         {
             this.navService.NavigateToTaskListPage("TaskList");
+        }
+        private void GoToSplitTaskPageExecute()
+        {
+            this.navService.NavigateToSplitTaskPage("SplitTask");
         }
     }
 }

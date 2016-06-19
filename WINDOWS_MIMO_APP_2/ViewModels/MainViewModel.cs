@@ -63,7 +63,7 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
 
         private void GoToRecipePageExecute()
         {
-            this.navService.NavigateToRecipePage("RecipePage");
+            this.navService.NavigateToRecipePage(8);
         }
         private void GoToRecipeListPageExecute()
         {

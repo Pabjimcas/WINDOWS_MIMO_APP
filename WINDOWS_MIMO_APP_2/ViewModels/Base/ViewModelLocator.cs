@@ -23,6 +23,7 @@
             builder.RegisterType<RecipeListViewModel>();
             builder.RegisterType<TaskListViewModel>();
             builder.RegisterType<TaskViewModel>();
+            builder.RegisterType<SplitTaskViewModel>();
 
             this.container = builder.Build();
         }
@@ -52,6 +53,10 @@
         public TaskViewModel TaskVM
         {
             get { return this.container.Resolve<TaskViewModel>(); }
+        }
+        public SplitTaskViewModel SplitTaskVM
+        {
+            get { return this.container.Resolve<SplitTaskViewModel>(); }
         }
 
     }

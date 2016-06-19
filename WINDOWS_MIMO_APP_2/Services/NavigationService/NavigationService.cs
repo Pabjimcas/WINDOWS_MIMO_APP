@@ -55,6 +55,16 @@
             if (AppFrame != null)
                 AppFrame.Navigate(typeof(TaskPage), argument);
         }
+        public void NavigateToSplitTaskPage()
+        {
+            NavigateToSplitTaskPage<Object>(null);
+        }
+
+        public void NavigateToSplitTaskPage<T>(T argument)
+        {
+            if (AppFrame != null)
+                AppFrame.Navigate(typeof(SplitTaskPage), argument);
+        }
 
 
     }
