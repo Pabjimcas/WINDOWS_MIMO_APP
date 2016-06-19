@@ -12,14 +12,18 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
     using Windows.UI.Xaml.Navigation;
     using System.Windows.Input;
     using Models;
+    using Services.Database;
     public class RecipeViewModel : ViewModelBase
     {
         private string message;
         private INavigationService   navService;
         private IRecipeService recipeService;
+        private IDbService dbService;
         private DelegateCommand goToTaskListPageCommand;
+        private DelegateCommand addToFavoritesCommand;
         private DelegateCommand loadRecipeCommand;
         private Recipe recipe;
+
         private string title;
 
         public string Title
@@ -41,13 +45,20 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
         }
 
 
-        public RecipeViewModel(INavigationService navService, IRecipeService recipeService)
+        public RecipeViewModel(INavigationService navService, IRecipeService recipeService, IDbService dbService)
         {
             this.navService = navService;
             this.recipeService = recipeService;
+            this.dbService = dbService;
             this.goToTaskListPageCommand = new DelegateCommand(GoToTaskListPageExecute);
             loadRecipeCommand = new DelegateCommand(LoadRecipe, null);
+            this.addToFavoritesCommand = new DelegateCommand(AddToFavoritesExecute);
             Message = "Welcome to the recipe page";
+        }
+
+        private void AddToFavoritesExecute()
+        {
+            this.dbService.addRecipeFavorite(recipe);
         }
 
         private async void LoadRecipe()
@@ -73,6 +84,11 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
         public ICommand GoToTaskListPageCommand
         {
             get { return this.goToTaskListPageCommand; }
+        }
+
+        public ICommand AddToFavoritesCommand
+        {
+            get { return this.addToFavoritesCommand; }
         }
 
 

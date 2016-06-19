@@ -15,6 +15,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using WINDOWS_MIMO_APP_2.Services.Database;
+using WINDOWS_MIMO_APP_2.ViewModels.Base;
 
 namespace WINDOWS_MIMO_APP_2
 {
@@ -47,6 +49,10 @@ namespace WINDOWS_MIMO_APP_2
             }
 #endif
             Frame rootFrame = Window.Current.Content as Frame;
+
+            var vmLocator = (ViewModelLocator)Current.Resources["Locator"];
+            var dbService = vmLocator.Resolve<IDbService>();
+            dbService.CreateDb();
 
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active

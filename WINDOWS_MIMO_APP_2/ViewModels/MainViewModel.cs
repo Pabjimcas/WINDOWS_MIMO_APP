@@ -3,9 +3,12 @@
 namespace WINDOWS_MIMO_APP_2.ViewModels
 {
     using Base;
+    using Models;
+    using Services.Database;
     using Services.NavigationService;
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
@@ -15,17 +18,32 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
     public class MainViewModel : ViewModelBase
     {
         private INavigationService navService;
+        private IDbService dbService;
         private DelegateCommand goToRecipePageCommand;
         private DelegateCommand goToRecipeListPageCommand;
-        public MainViewModel(INavigationService navService)
+        private ObservableCollection<RecipeFavorite> favoriteRecipes;
+        public MainViewModel(INavigationService navService, IDbService dbService)
         {
             this.navService = navService;
+            this.dbService = dbService;
             this.goToRecipeListPageCommand = new DelegateCommand(GoToRecipeListPageExecute);
             this.goToRecipePageCommand = new DelegateCommand(GoToRecipePageExecute);
-           
+
+            var favoritesList = this.dbService.getFavorites();
+            FavoriteRecipes = new ObservableCollection<RecipeFavorite>(favoritesList);
         }
 
-        
+        public ObservableCollection<RecipeFavorite> FavoriteRecipes
+        {
+            get { return this.favoriteRecipes; }
+            set
+            {
+                this.favoriteRecipes = value;
+                RaisePropertyChanged();
+            }
+        }
+
+
 
         public ICommand GoToRecipePageCommand
         {

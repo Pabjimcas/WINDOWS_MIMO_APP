@@ -1,6 +1,7 @@
 ﻿namespace WINDOWS_MIMO_APP_2.ViewModels.Base
 {
     using Autofac;
+    using Services.Database;
     using Services.NavigationService;
     using System;
     using System.Collections.Generic;
@@ -16,6 +17,7 @@
             ContainerBuilder builder = new ContainerBuilder();
             builder.RegisterType<NavigationService>().As<INavigationService>();
             builder.RegisterType<RecipeService>().As<IRecipeService>();
+            builder.RegisterType<DbService>().As<IDbService>();
             builder.RegisterType<MainViewModel>();
             builder.RegisterType<RecipeViewModel>();
             builder.RegisterType<RecipeListViewModel>();
@@ -23,6 +25,11 @@
             builder.RegisterType<TaskViewModel>();
 
             this.container = builder.Build();
+        }
+
+        public T Resolve<T>()
+        {
+            return this.container.Resolve<T>();
         }
 
         public MainViewModel MainVM
