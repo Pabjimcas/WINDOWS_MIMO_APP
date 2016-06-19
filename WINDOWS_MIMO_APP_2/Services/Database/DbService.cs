@@ -20,9 +20,9 @@ namespace WINDOWS_MIMO_APP_2.Services.Database
             using (var cnx = new SQLiteConnection(new SQLitePlatformWinRT(), dbPath))
             {
                 cnx.CreateTable<RecipeFavorite>();
-                //cnx.CreateTable<MeasureIngredientFavorite>();
-                //cnx.CreateTable<IngredientFavorite>();
-                //cnx.CreateTable<TaskFavorite>();
+                cnx.CreateTable<MeasureIngredientFavorite>();
+                cnx.CreateTable<IngredientFavorite>();
+                cnx.CreateTable<TaskFavorite>();
                 cnx.Commit();
             }
         }
@@ -39,6 +39,7 @@ namespace WINDOWS_MIMO_APP_2.Services.Database
                 rFavorite.author = recipe.author;
                 rFavorite.difficulty = recipe.difficulty;
 
+                for()
                 cnx.Insert(rFavorite);
 
                 cnx.Commit();
