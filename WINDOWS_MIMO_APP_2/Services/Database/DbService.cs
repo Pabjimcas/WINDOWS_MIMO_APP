@@ -31,18 +31,25 @@ namespace WINDOWS_MIMO_APP_2.Services.Database
         {
             using (var cnx = new SQLiteConnection(new SQLitePlatformWinRT(), dbPath))
             {
-                RecipeFavorite rFavorite = new RecipeFavorite();
-                rFavorite.name = recipe.name;
-                rFavorite.photo = recipe.photo;
-                rFavorite.portions = recipe.portions;
-                rFavorite.score = recipe.score;
-                rFavorite.author = recipe.author;
-                rFavorite.difficulty = recipe.difficulty;
+                RecipeFavorite rFavorite = new RecipeFavorite(recipe);
+                 
+                 int Rid = cnx.Insert(rFavorite);
 
-                for()
-                cnx.Insert(rFavorite);
+                
+                foreach (Models.Task t  in recipe.tasks) {
+                    TaskFavorite tFavorite = new TaskFavorite(t,Rid);
+                    cnx.Insert(tFavorite);
+                }
 
+                foreach (Models.MeasureIngredient m in recipe.measureIngredients)
+                {
+                    IngredientFavorite iFavorite = new IngredientFavorite(m.ingredient);
+                   int Iid= cnx.Insert(iFavorite);
+                    MeasureIngredientFavorite mFavorite = new MeasureIngredientFavorite(m,Iid,Rid);
+                    cnx.Insert(mFavorite);
+                }
                 cnx.Commit();
+
             }
         }
 

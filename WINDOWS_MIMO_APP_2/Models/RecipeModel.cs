@@ -14,7 +14,7 @@ namespace WINDOWS_MIMO_APP_2.Models
         public string name { get; set; }
         public string description { get; set; }
         public int? seconds { get; set; }
-        public object photo { get; set; }
+        public string photo { get; set; }
     }
 
     public class Ingredient
@@ -24,7 +24,7 @@ namespace WINDOWS_MIMO_APP_2.Models
         public bool frozen { get; set; }
         public string category { get; set; }
         public string baseType { get; set; }
-        public object photo { get; set; }
+        public string photo { get; set; }
     }
 
     public class MeasureIngredient

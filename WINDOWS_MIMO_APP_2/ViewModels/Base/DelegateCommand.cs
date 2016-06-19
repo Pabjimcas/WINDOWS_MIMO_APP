@@ -14,6 +14,7 @@
         private Func<bool> canExecuteAction;
         private DelegateCommand loadRecipes;
         private object p;
+        private Action<int> loadRecipe;
 
         public DelegateCommand(Action exec) : this(exec, null) { }
       
@@ -28,6 +29,11 @@
             this.p = p;
         }
 
+        public DelegateCommand(Action<int> loadRecipe, object p)
+        {
+            this.loadRecipe = loadRecipe;
+            this.p = p;
+        }
 
         public bool CanExecute(object parameter)
         {

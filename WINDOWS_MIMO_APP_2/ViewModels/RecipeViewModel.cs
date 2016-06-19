@@ -26,23 +26,7 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
 
         private string title;
 
-        public string Title
-        {
-            get {
-                if (recipe != null)
-                {
-                    return recipe.name;
-                }else
-                {
-                    return title;
-                }
-           }
-            set
-            {
-                title = value;
-                RaisePropertyChanged();
-            }
-        }
+        
 
 
         public RecipeViewModel(INavigationService navService, IRecipeService recipeService, IDbService dbService)
@@ -61,9 +45,9 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
             this.dbService.addRecipeFavorite(recipe);
         }
 
-        private async void LoadRecipe()
+        private async void LoadRecipe(int id)
         {
-            var result = await this.recipeService.GetRecipeAsync(1);
+            var result = await this.recipeService.GetRecipeAsync(id);
 
             if (result != null)
             {
@@ -76,7 +60,8 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
             set
             {
                 recipe = value;
-                Title = recipe.name;
+                Message = recipe.name;
+                Title = recipe.author;
                 RaisePropertyChanged();
             }
         }
@@ -102,12 +87,26 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
                 RaisePropertyChanged();
             }
         }
+        public string Title
+        {
+            get
+            {
+                
+                    return title;
+           
+            }
+            set
+            {
+                title = value;
+                RaisePropertyChanged();
+            }
+        }
         public override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
             this.navService.AppFrame = base.AppFrame;
-            Message = (string)e.Parameter;
-            LoadRecipe();
+            
+            LoadRecipe((int)e.Parameter);
         }
         public override void OnNavigatedFrom(NavigationEventArgs e)
         {

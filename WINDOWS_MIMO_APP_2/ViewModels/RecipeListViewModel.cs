@@ -35,11 +35,11 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
             var recipeItemlist = arg.ClickedItem as RecipeList;
             if (recipeItemlist != null)
             {
-                var st =""+recipeItemlist.id ;
+                var st =recipeItemlist.id ;
                 this.navService.NavigateToRecipePage(st);
             }else
             {
-                this.navService.NavigateToRecipePage("1");
+                this.navService.NavigateToRecipePage(1);
             }
             
         }

@@ -13,6 +13,6 @@
         <TextBlock x:Name="texto"  TextWrapping="Wrap" TextAlignment="Center" Text="{Binding Message}" RelativePanel.AlignHorizontalCenterWithPanel="True" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="32"  />
         <Button RelativePanel.Below="texto" x:Name="button" Content="Task List" Command="{Binding GoToTaskListPageCommand}" HorizontalAlignment="Center" VerticalAlignment="Center" />
         <Button RelativePanel.Below="button" x:Name="favorite" Content="Favorite" Command="{Binding AddToFavoritesCommand}" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <TextBlock RelativePanel.Below="button"  Text="{Binding Title,Mode=TwoWay}" />
+        <TextBlock RelativePanel.Below="favorite"  Text="{Binding Title,Mode=TwoWay}" />
     </RelativePanel>
 </base:ViewBase>

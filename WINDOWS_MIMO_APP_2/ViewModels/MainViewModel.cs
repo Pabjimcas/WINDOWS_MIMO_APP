@@ -29,8 +29,7 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
             this.goToRecipeListPageCommand = new DelegateCommand(GoToRecipeListPageExecute);
             this.goToRecipePageCommand = new DelegateCommand(GoToRecipePageExecute);
 
-            var favoritesList = this.dbService.getFavorites();
-            FavoriteRecipes = new ObservableCollection<RecipeFavorite>(favoritesList);
+            
         }
 
         public ObservableCollection<RecipeFavorite> FavoriteRecipes
@@ -58,6 +57,8 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
         {
             base.OnNavigatedTo(e);
             this.navService.AppFrame = base.AppFrame;
+            var favoritesList = this.dbService.getFavorites();
+            FavoriteRecipes = new ObservableCollection<RecipeFavorite>(favoritesList);
         }
 
         private void GoToRecipePageExecute()
