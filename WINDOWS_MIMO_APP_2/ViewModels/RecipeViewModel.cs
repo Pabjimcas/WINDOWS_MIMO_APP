@@ -23,6 +23,7 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
         private DelegateCommand addToFavoritesCommand;
         private DelegateCommand loadRecipeCommand;
         private Recipe recipe;
+        private string photo;
 
         private string title;
         private DelegateCommand goToSplitTaskPageCommand;
@@ -61,6 +62,7 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
                 recipe = value;
                 Message = recipe.name;
                 Title = recipe.author;
+                Photo = recipe.photo;
                 RaisePropertyChanged();
             }
         }
@@ -87,6 +89,15 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
             set
             {
                 message = value;
+                RaisePropertyChanged();
+            }
+        }
+        public string Photo
+        {
+            get { return photo; }
+            set
+            {
+                photo = value;
                 RaisePropertyChanged();
             }
         }

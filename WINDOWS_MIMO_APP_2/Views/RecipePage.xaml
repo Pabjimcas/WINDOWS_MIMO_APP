@@ -15,5 +15,7 @@
         <Button RelativePanel.Below="button" x:Name="favorite" Content="Favorite" Command="{Binding AddToFavoritesCommand}" HorizontalAlignment="Center" VerticalAlignment="Center" />
         <TextBlock RelativePanel.Below="favorite" x:Name="title"  Text="{Binding Title,Mode=TwoWay}" />
         <Button RelativePanel.Below="title" x:Name="splitTask" Content="Split Task" Command="{Binding GoToSplitTaskPageCommand}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <Image RelativePanel.Below="splitTask" Source="{Binding Photo}"/>
+    
     </RelativePanel>
 </base:ViewBase>
