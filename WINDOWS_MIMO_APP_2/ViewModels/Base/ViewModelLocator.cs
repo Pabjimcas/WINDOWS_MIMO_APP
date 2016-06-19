@@ -15,6 +15,7 @@
         {
             ContainerBuilder builder = new ContainerBuilder();
             builder.RegisterType<NavigationService>().As<INavigationService>();
+            builder.RegisterType<RecipeService>().As<IRecipeService>();
             builder.RegisterType<MainViewModel>();
             builder.RegisterType<RecipeViewModel>();
             builder.RegisterType<RecipeListViewModel>();
