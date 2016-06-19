@@ -17,18 +17,18 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
         private IRecipeService recipeService;
         private string message;
         private INavigationService   navService;
-        private DelegateCommand loadRecipeCommand;
+        private DelegateCommand loadRecipeListCommand;
         private ObservableCollection<RecipeList> recipes;
 
         public RecipeListViewModel(INavigationService navService,IRecipeService recipeService)
         {
             this.navService = navService;
             this.recipeService = recipeService;
-            loadRecipeCommand = new DelegateCommand(LoadRecipe, null);
+            loadRecipeListCommand = new DelegateCommand(LoadRecipeList, null);
             Message = "Welcome to the recipe List page";
         }
 
-        private async void LoadRecipe()
+        private async void LoadRecipeList()
         {
             var result = await this.recipeService.GetRecipesAsync();
 
@@ -37,9 +37,9 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
                 Recipes = new ObservableCollection<RecipeList>(result);
             }
         }
-        public DelegateCommand LoadRecipeCommand
+        public DelegateCommand LoadRecipeListCommand
         {
-            get { return loadRecipeCommand; }
+            get { return loadRecipeListCommand; }
         }
 
         public string Message
@@ -67,6 +67,7 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
             base.OnNavigatedTo(e);
             this.navService.AppFrame = base.AppFrame;
             Message = (string)e.Parameter;
+            LoadRecipeList();
         }
         public override void OnNavigatedFrom(NavigationEventArgs e)
         {

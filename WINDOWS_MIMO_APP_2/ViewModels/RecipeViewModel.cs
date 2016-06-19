@@ -11,18 +11,65 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
     using WINDOWS_MIMO_APP_2.ViewModels.Base;
     using Windows.UI.Xaml.Navigation;
     using System.Windows.Input;
+    using Models;
     public class RecipeViewModel : ViewModelBase
     {
         private string message;
         private INavigationService   navService;
+        private IRecipeService recipeService;
         private DelegateCommand goToTaskListPageCommand;
+        private DelegateCommand loadRecipeCommand;
+        private Recipe recipe;
+        private string title;
 
-        public RecipeViewModel(INavigationService navService)
+        public string Title
+        {
+            get {
+                if (recipe != null)
+                {
+                    return recipe.name;
+                }else
+                {
+                    return title;
+                }
+           }
+            set
+            {
+                title = value;
+                RaisePropertyChanged();
+            }
+        }
+
+
+        public RecipeViewModel(INavigationService navService, IRecipeService recipeService)
         {
             this.navService = navService;
+            this.recipeService = recipeService;
             this.goToTaskListPageCommand = new DelegateCommand(GoToTaskListPageExecute);
+            loadRecipeCommand = new DelegateCommand(LoadRecipe, null);
             Message = "Welcome to the recipe page";
         }
+
+        private async void LoadRecipe()
+        {
+            var result = await this.recipeService.GetRecipeAsync(1);
+
+            if (result != null)
+            {
+                Recipe = result;
+            }
+        }
+        public Recipe Recipe
+        {
+            get { return recipe; }
+            set
+            {
+                recipe = value;
+                Title = recipe.name;
+                RaisePropertyChanged();
+            }
+        }
+
         public ICommand GoToTaskListPageCommand
         {
             get { return this.goToTaskListPageCommand; }
@@ -44,6 +91,7 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
             base.OnNavigatedTo(e);
             this.navService.AppFrame = base.AppFrame;
             Message = (string)e.Parameter;
+            LoadRecipe();
         }
         public override void OnNavigatedFrom(NavigationEventArgs e)
         {

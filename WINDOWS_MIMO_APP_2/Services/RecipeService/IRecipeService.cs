@@ -7,6 +7,7 @@
     public interface IRecipeService
     {
         Task<List<RecipeList>> GetRecipesAsync();
+        Task<Recipe> GetRecipeAsync(int id);
 
     }
 }

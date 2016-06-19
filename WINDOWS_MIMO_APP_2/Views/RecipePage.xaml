@@ -12,6 +12,6 @@
     <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <TextBlock x:Name="texto"  TextWrapping="Wrap" TextAlignment="Center" Text="{Binding Message}" RelativePanel.AlignHorizontalCenterWithPanel="True" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="32"  />
         <Button RelativePanel.Below="texto" x:Name="button" Content="Task List" Command="{Binding GoToTaskListPageCommand}" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <TextBlock RelativePanel.Below="button"  Text="PAGINA DESCRIPCION" />
+        <TextBlock RelativePanel.Below="button"  Text="{Binding Title,Mode=TwoWay}" />
     </RelativePanel>
 </base:ViewBase>

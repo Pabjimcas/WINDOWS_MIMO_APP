@@ -14,6 +14,7 @@
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
         </Grid.RowDefinitions>
+        
         <Button Content="Recipe Description" Grid.Row="0" Command="{Binding GoToRecipePageCommand}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <Button Content="Recipe List" Grid.Row="1" Command="{Binding GoToRecipeListPageCommand}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
     </Grid>
