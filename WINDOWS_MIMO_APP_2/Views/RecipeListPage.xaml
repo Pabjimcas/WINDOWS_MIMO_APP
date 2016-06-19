@@ -12,5 +12,21 @@
     <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <TextBlock x:Name="texto" Text="{Binding Message}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="32"/>
         <Button RelativePanel.Below="texto" x:Name="button" Content="recipe List" Command="{Binding LoadRecipeCommand}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <ListView x:Name="ListRecipes" Opacity="1" ItemsSource ="{Binding Recipes}" RelativePanel.Below="button">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                   
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="{Binding id}" ></TextBlock>
+                            <TextBlock Grid.Column="1" Text="{Binding name}"></TextBlock>
+                        </Grid>
+             
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </RelativePanel>
 </base:ViewBase>

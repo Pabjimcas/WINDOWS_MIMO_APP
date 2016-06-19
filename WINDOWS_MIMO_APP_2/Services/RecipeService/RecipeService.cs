@@ -14,7 +14,7 @@
     {
         public async Task<List<RecipeList>> GetRecipesAsync()
         {
-            string url = $"http://http://otakucook.herokuapp.com/recipes";
+            string url = $"http://otakucook.herokuapp.com/recipes";
             HttpClient client = new HttpClient();
             var result = await client.GetStringAsync(url);
 

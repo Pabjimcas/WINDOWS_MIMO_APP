@@ -10,6 +10,8 @@
     {
         private Action executeAction;
         private Func<bool> canExecuteAction;
+        private DelegateCommand loadRecipes;
+        private object p;
 
         public DelegateCommand(Action exec) : this(exec, null) { }
       
@@ -17,6 +19,11 @@
         {
             this.executeAction = exec;
             this.canExecuteAction = canExec;
+        }
+        public DelegateCommand(DelegateCommand loadRecipes, object p)
+        {
+            this.loadRecipes = loadRecipes;
+            this.p = p;
         }
 
         public bool CanExecute(object parameter)
