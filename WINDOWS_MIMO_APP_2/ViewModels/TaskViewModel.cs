@@ -91,7 +91,7 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
             base.OnNavigatedTo(e);
             this.navService.AppFrame = base.AppFrame;
             LoadTask((Task)e.Parameter);
-            Message = (string)e.Parameter;
+            //Message = (string)e.Parameter;
         }
         public override void OnNavigatedFrom(NavigationEventArgs e)
         {

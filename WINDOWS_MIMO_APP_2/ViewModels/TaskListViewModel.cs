@@ -13,6 +13,7 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
     using System.Windows.Input;
     using System.Collections.ObjectModel;
     using Models;
+    using Windows.UI.Xaml.Controls;
     public class TaskListViewModel : ViewModelBase
     {
         private string message;
@@ -40,6 +41,17 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
                 message = value;
                 RaisePropertyChanged();
             }
+        }
+
+        public void ListItemClicked(object sender, object parameter)
+        {
+            var arg = parameter as ItemClickEventArgs;
+            var taskItemList = arg.ClickedItem as Task;
+            if (taskItemList != null)
+            {
+                this.navService.NavigateToTaskPage(taskItemList);
+            }
+
         }
 
         public ObservableCollection<Task> TaskList { get; private set; }
