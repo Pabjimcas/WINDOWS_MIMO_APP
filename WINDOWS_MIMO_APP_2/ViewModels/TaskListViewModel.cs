@@ -7,15 +7,18 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
-    using System.Threading.Tasks;
+
     using WINDOWS_MIMO_APP_2.ViewModels.Base;
     using Windows.UI.Xaml.Navigation;
     using System.Windows.Input;
+    using System.Collections.ObjectModel;
+    using Models;
     public class TaskListViewModel : ViewModelBase
     {
         private string message;
         private INavigationService   navService;
         private DelegateCommand goToTaskPageCommand;
+        private DelegateCommand loadTaskListCommand;
 
         public TaskListViewModel(INavigationService navService)
         {
@@ -29,7 +32,6 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
         }
 
         
-
         public string Message
         {
             get { return message; }
@@ -39,11 +41,16 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
                 RaisePropertyChanged();
             }
         }
+
+        public ObservableCollection<Task> TaskList { get; private set; }
+
         public override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
             this.navService.AppFrame = base.AppFrame;
-            Message = (string)e.Parameter;
+            List<Task> result=(List<Task>)e.Parameter;
+            TaskList=new ObservableCollection<Task>(result);
+            //Message = (string)e.Parameter;
         }
         public override void OnNavigatedFrom(NavigationEventArgs e)
         {

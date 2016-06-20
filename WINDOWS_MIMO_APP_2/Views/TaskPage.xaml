@@ -11,6 +11,11 @@
 
     <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <TextBlock x:Name="texto" Text="{Binding Message}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="32" Height="48"/>
-        <TextBlock Text="PAGINA Task 1" RelativePanel.Below="texto"/>
+        <TextBlock Text="{Binding Task}" x:Name="TaskTitle" RelativePanel.Below="texto" HorizontalAlignment="Center"/>
+        <Image RelativePanel.Below="TaskTitle" x:Name="TaskImage" Source="{Binding Photo}"/>
+        <TextBlock Text="{Binding Description}" x:Name="TaskDescription" RelativePanel.Below="TaskImage"/>
+        <TextBlock Text="{Binding Seconds}" x:Name="TaskSeconds" RelativePanel.Below="TaskDescription"/>
+        
+        
     </RelativePanel>
 </base:ViewBase>
