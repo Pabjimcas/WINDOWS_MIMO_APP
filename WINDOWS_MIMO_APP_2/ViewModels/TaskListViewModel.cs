@@ -20,6 +20,14 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
         private INavigationService   navService;
         private DelegateCommand goToTaskPageCommand;
         private DelegateCommand loadTaskListCommand;
+        private bool estado = true;
+
+        public bool Estado
+        {
+            get { return estado; }
+            set { estado = value; RaisePropertyChanged(); }
+        }
+
 
         public TaskListViewModel(INavigationService navService)
         {
@@ -60,8 +68,14 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
         {
             base.OnNavigatedTo(e);
             this.navService.AppFrame = base.AppFrame;
-            List<Task> result=(List<Task>)e.Parameter;
-            TaskList=new ObservableCollection<Task>(result);
+            if (e.Parameter != null)
+            {
+                List<Task> result=(List<Task>)e.Parameter;
+            
+                TaskList = new ObservableCollection<Task>(result);
+                Estado = false;
+            }
+            
             //Message = (string)e.Parameter;
         }
         public override void OnNavigatedFrom(NavigationEventArgs e)

@@ -20,7 +20,15 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
         private INavigationService   navService;
         private DelegateCommand loadRecipeListCommand;
         private ObservableCollection<RecipeList> recipes;
-        
+        private bool estado = true;
+
+        public bool Estado
+        {
+            get { return estado; }
+            set { estado = value; RaisePropertyChanged(); }
+        }
+       
+
 
         public RecipeListViewModel(INavigationService navService,IRecipeService recipeService)
         {
@@ -53,6 +61,7 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
             if (result != null)
             {
                 Recipes = new ObservableCollection<RecipeList>(result);
+                Estado = false;
             }
         }
         public DelegateCommand LoadRecipeListCommand
