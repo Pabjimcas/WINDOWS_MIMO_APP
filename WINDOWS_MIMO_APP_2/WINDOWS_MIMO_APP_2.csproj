@@ -98,6 +98,7 @@
     <Compile Include="Models\Favorites.cs" />
     <Compile Include="Models\RecipeModel.cs" />
     <Compile Include="Models\RecipeListModel.cs" />
+    <Compile Include="Models\TaskPivotModel.cs" />
     <Compile Include="Services\Database\DbService.cs" />
     <Compile Include="Services\Database\IDbService.cs" />
     <Compile Include="Services\NavigationService\INavigationService.cs" />
@@ -105,7 +106,7 @@
     <Compile Include="Services\RecipeService\IRecipeService.cs" />
     <Compile Include="Services\RecipeService\RecipeService.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="ViewModels\SplitTaskViewModel.cs" />
+    <Compile Include="ViewModels\PivotTaskViewModel.cs" />
     <Compile Include="ViewModels\TaskViewModel.cs" />
     <Compile Include="ViewModels\TaskListViewModel.cs" />
     <Compile Include="ViewModels\RecipeListViewModel.cs" />
@@ -118,8 +119,8 @@
     <Compile Include="ViewModels\Base\DelegateCommand.cs" />
     <Compile Include="ViewModels\Base\ViewModelBase.cs" />
     <Compile Include="ViewModels\Base\ViewModelLocator.cs" />
-    <Compile Include="Views\SplitTaskPage.xaml.cs">
-      <DependentUpon>SplitTaskPage.xaml</DependentUpon>
+    <Compile Include="Views\PivotTaskPage.xaml.cs">
+      <DependentUpon>PivotTaskPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TaskPage.xaml.cs">
       <DependentUpon>TaskPage.xaml</DependentUpon>
@@ -159,7 +160,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\SplitTaskPage.xaml">
+    <Page Include="Views\PivotTaskPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

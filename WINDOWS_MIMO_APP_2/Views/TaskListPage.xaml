@@ -14,7 +14,7 @@
 
     <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <TextBlock x:Name="texto" RelativePanel.AlignHorizontalCenterWithPanel="True" Text="{Binding Message}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="32"/>
-        <TextBlock x:Name="task" Text="PAGINA Tasks" RelativePanel.Below="texto"/>
+        <TextBlock x:Name="task" Text="Pasos" RelativePanel.Below="texto"/>
         <ProgressRing RelativePanel.Below="task" x:Name="progress" IsActive="{Binding Estado}" />
         <ListView x:Name="ListTask" Opacity="1" ItemsSource ="{Binding TaskList}" RelativePanel.Below="progress" IsItemClickEnabled="True" SelectionMode="None">
             <Interactivity:Interaction.Behaviors>
@@ -29,7 +29,8 @@
                             <ColumnDefinition Width="100"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="1" Text="{Binding name}"></TextBlock>
+                        <TextBlock Grid.Column="0" Text="{Binding name}"></TextBlock>
+                        <TextBlock Grid.Column="1" Text="{Binding description}"></TextBlock>
                     </Grid>
 
                 </DataTemplate>

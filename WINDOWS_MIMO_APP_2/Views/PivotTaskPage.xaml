@@ -1,0 +1,32 @@
+﻿<base:ViewBase
+    x:Class="WINDOWS_MIMO_APP_2.Views.SplitTaskPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WINDOWS_MIMO_APP_2.Views"
+    xmlns:base="using:WINDOWS_MIMO_APP2.Views.Base"
+    DataContext="{Binding SplitTaskVM, Source={StaticResource Locator}}"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid x:Name="LayoutRoot" Background="Transparent">
+            <Pivot ItemsSource="{Binding TaskList}" Title="Mi receta" x:Name="pivot" CommonNavigationTransitionInfo.IsStaggerElement="True">
+                <Pivot.HeaderTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Header}"></TextBlock>
+                    </DataTemplate>
+                </Pivot.HeaderTemplate>
+                <Pivot.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Vertical">
+                            <Image x:Name="TaskImage" Source="{Binding  Task.photo}"/>
+                            <TextBlock Text="{Binding Task.description}" x:Name="TaskDescription"/>
+                            <TextBlock Text="{Binding Task.seconds}" x:Name="TaskSeconds"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </Pivot.ItemTemplate>
+            </Pivot>
+        </Grid>
+    </RelativePanel>
+</base:ViewBase>

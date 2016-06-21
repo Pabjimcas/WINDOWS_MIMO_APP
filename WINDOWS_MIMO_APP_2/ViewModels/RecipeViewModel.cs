@@ -135,7 +135,7 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
         }
         private void GoToSplitTaskPageExecute()
         {
-            this.navService.NavigateToSplitTaskPage("SplitTask");
+            this.navService.NavigateToSplitTaskPage(TaskList);
         }
     }
 }
