@@ -11,19 +11,19 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
     using Windows.UI.Xaml.Navigation;
     using System.Collections.ObjectModel;
     using Models;
+    using Windows.UI.Xaml.Input;
     public class PivotTaskViewModel : ViewModelBase
     {
-        private string message;
+        private string recipeName;
         private INavigationService   navService;
 
         public PivotTaskViewModel(INavigationService navService)
         {
             this.navService = navService;
-            this.TaskList = new ObservableCollection<TaskPivotModel>();
-            Message = "Welcome to the split task page";
+            //this.TaskList = new ObservableCollection<TaskPivotModel>();
         }
 
-        public ObservableCollection<TaskPivotModel> TaskList { get; private set; }
+        public ObservableCollection<Task> TaskList { get; private set; }
 
         public bool IsDataLoaded
         {
@@ -38,22 +38,25 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
         }
 
 
-        public string Message
+        public string RecipeName
         {
-            get { return message; }
+            get { return recipeName; }
             set
             {
-                message = value;
+                recipeName = value;
                 RaisePropertyChanged();
             }
         }
+
         public override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
             this.navService.AppFrame = base.AppFrame;
-            List<Task> result = (List<Task>)e.Parameter;
-
-            foreach (Task task in result)
+            var recipe = (Recipe)e.Parameter;
+            List<Task> result = recipe.tasks;
+            RecipeName = recipe.name;
+            TaskList = new ObservableCollection<Task>(result);
+            /*foreach (Task task in result)
             {
                 var taskPivotModel = new TaskPivotModel()
                 {
@@ -61,7 +64,7 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
                 };
                 taskPivotModel.Task = task;
                 TaskList.Add(taskPivotModel);
-            }
+            }*/
 
 
             //

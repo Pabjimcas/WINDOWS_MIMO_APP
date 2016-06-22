@@ -27,5 +27,7 @@ namespace WINDOWS_MIMO_APP_2.Views
         {
             this.InitializeComponent();
         }
+
+        
     }
 }

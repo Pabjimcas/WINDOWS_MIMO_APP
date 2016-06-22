@@ -10,23 +10,21 @@
     mc:Ignorable="d">
 
     <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Grid x:Name="LayoutRoot" Background="Transparent">
-            <Pivot ItemsSource="{Binding TaskList}" Title="Mi receta" x:Name="pivot" CommonNavigationTransitionInfo.IsStaggerElement="True">
-                <Pivot.HeaderTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Header}"></TextBlock>
-                    </DataTemplate>
-                </Pivot.HeaderTemplate>
-                <Pivot.ItemTemplate>
+        <StackPanel x:Name="LayoutRoot" Background="Transparent">
+            <TextBlock x:Name="texto" TextWrapping="Wrap" TextAlignment="Center" Text="{Binding RecipeName}" FontSize="32"/>
+            <FlipView ItemsSource="{Binding TaskList}">
+                <FlipView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Vertical">
-                            <Image x:Name="TaskImage" Source="{Binding  Task.photo}"/>
-                            <TextBlock Text="{Binding Task.description}" x:Name="TaskDescription"/>
-                            <TextBlock Text="{Binding Task.seconds}" x:Name="TaskSeconds"/>
+                            <Image x:Name="TaskImage" Source="{Binding  photo}" Height="250"/>
+                            <TextBlock Margin="20" Text="{Binding description}" x:Name="TaskDescription"/>
+                            <!--Usar converter para formatear segundos-->
+                            <TextBlock Text="{Binding seconds}"/>
                         </StackPanel>
                     </DataTemplate>
-                </Pivot.ItemTemplate>
-            </Pivot>
-        </Grid>
+                </FlipView.ItemTemplate>
+            </FlipView>
+           
+        </StackPanel>
     </RelativePanel>
 </base:ViewBase>
