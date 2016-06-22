@@ -101,6 +101,8 @@
     <Compile Include="Models\TaskPivotModel.cs" />
     <Compile Include="Services\Database\DbService.cs" />
     <Compile Include="Services\Database\IDbService.cs" />
+    <Compile Include="Services\DialogService\DialogService.cs" />
+    <Compile Include="Services\DialogService\IDialogService.cs" />
     <Compile Include="Services\NavigationService\INavigationService.cs" />
     <Compile Include="Services\NavigationService\NavigationService.cs" />
     <Compile Include="Services\RecipeService\IRecipeService.cs" />

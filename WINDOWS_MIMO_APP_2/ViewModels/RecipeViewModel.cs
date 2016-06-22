@@ -13,6 +13,7 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
     using Models;
     using Services.Database;
     using System.Collections.ObjectModel;
+    using Services.DialogService;
     public class RecipeViewModel : ViewModelBase
     {
         private string message;
@@ -27,12 +28,14 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
 
         private string title;
         private DelegateCommand goToSplitTaskPageCommand;
+        private IDialogService dialogService;
 
-        public RecipeViewModel(INavigationService navService, IRecipeService recipeService, IDbService dbService)
+        public RecipeViewModel(INavigationService navService, IRecipeService recipeService, IDbService dbService,IDialogService dialogService)
         {
             this.navService = navService;
             this.recipeService = recipeService;
             this.dbService = dbService;
+            this.dialogService = dialogService;
             this.goToTaskListPageCommand = new DelegateCommand(GoToTaskListPageExecute);
             this.goToSplitTaskPageCommand = new DelegateCommand(GoToSplitTaskPageExecute);
             loadRecipeCommand = new DelegateCommand(LoadRecipe, null);
@@ -43,6 +46,9 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
         private void AddToFavoritesExecute()
         {
             this.dbService.addRecipeFavorite(recipe);
+            this.dialogService.ShowMessage("The Recipe has been saved as favorite ", "Save Favorite");
+
+
         }
 
         private async void LoadRecipe(int id)
