@@ -15,5 +15,7 @@
         void removeRecipeFavorite(int id);
 
         IList<RecipeFavorite> getFavorites();
+
+        bool recipeFavoriteExists(string name);
     }
 }

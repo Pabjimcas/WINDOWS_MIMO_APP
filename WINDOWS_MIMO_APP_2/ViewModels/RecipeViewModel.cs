@@ -14,6 +14,7 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
     using Services.Database;
     using System.Collections.ObjectModel;
     using Services.DialogService;
+    using Windows.UI.Xaml;
     public class RecipeViewModel : ViewModelBase
     {
         private string message;
@@ -25,6 +26,15 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
         private DelegateCommand loadRecipeCommand;
         private Recipe recipe;
         private string photo;
+ 
+        private Visibility _advancedFormat = Visibility.Visible;
+
+        public Visibility AdvancedFormat
+        {
+            get { return _advancedFormat; }
+            set { _advancedFormat = value; RaisePropertyChanged(); }
+        }
+
 
         private string title;
         private DelegateCommand goToSplitTaskPageCommand;
@@ -45,11 +55,19 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
 
         private void AddToFavoritesExecute()
         {
-            this.dbService.addRecipeFavorite(recipe);
-            this.dialogService.ShowMessage("The Recipe has been saved as favorite ", "Save Favorite");
-
+            if (!this.dbService.recipeFavoriteExists(recipe.name)){
+                this.dbService.addRecipeFavorite(recipe);
+                this.dialogService.ShowMessage("The Recipe has been saved as favorite ", "Save Favorite");
+                AdvancedFormat = Visibility.Visible;
+            }
+            else
+            {
+                AdvancedFormat = Visibility.Collapsed;
+            }
 
         }
+
+
 
         private async void LoadRecipe(int id)
         {
