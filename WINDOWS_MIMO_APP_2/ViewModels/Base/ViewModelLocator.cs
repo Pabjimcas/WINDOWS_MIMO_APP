@@ -2,6 +2,7 @@
 {
     using Autofac;
     using Services.Database;
+    using Services.DialogService;
     using Services.NavigationService;
     using System;
     using System.Collections.Generic;
@@ -17,6 +18,7 @@
             ContainerBuilder builder = new ContainerBuilder();
             builder.RegisterType<NavigationService>().As<INavigationService>();
             builder.RegisterType<RecipeService>().As<IRecipeService>();
+            builder.RegisterType<DialogService>().As<IDialogService>();
             builder.RegisterType<DbService>().As<IDbService>();
             builder.RegisterType<MainViewModel>();
             builder.RegisterType<RecipeViewModel>();

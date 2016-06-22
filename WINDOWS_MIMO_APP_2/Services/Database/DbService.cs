@@ -79,5 +79,30 @@ namespace WINDOWS_MIMO_APP_2.Services.Database
                 cnx.Delete(recipe);
             }
         }
+
+        public bool recipeFavoriteExists(string name)
+        {
+            using (var cnx = new SQLiteConnection(new SQLitePlatformWinRT(), dbPath))
+            {
+                try
+                {
+                   var results = cnx.Query<RecipeFavorite>("Select * from Recipe where name = '" + name +"'");
+                    if (results.Count() > 0)
+                    {
+                        return true;
+                    }else
+                    {
+                        return false;
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                    throw ex;
+                }
+
+            }
+        }
     }
 }
