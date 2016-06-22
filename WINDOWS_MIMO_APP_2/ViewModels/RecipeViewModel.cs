@@ -131,11 +131,11 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
         }
         private void GoToTaskListPageExecute()
         {
-            this.navService.NavigateToTaskListPage(TaskList);
+            this.navService.NavigateToTaskListPage(Recipe);
         }
         private void GoToSplitTaskPageExecute()
         {
-            this.navService.NavigateToSplitTaskPage(TaskList);
+            this.navService.NavigateToSplitTaskPage(Recipe);
         }
     }
 }

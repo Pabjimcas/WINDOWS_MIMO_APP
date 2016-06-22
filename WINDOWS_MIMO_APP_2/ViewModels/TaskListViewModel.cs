@@ -16,7 +16,7 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
     using Windows.UI.Xaml.Controls;
     public class TaskListViewModel : ViewModelBase
     {
-        private string message;
+        private string recipeName;
         private INavigationService   navService;
         private DelegateCommand goToTaskPageCommand;
         private DelegateCommand loadTaskListCommand;
@@ -33,7 +33,6 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
         {
             this.navService = navService;
             this.goToTaskPageCommand = new DelegateCommand(GoToTaskPageExecute);
-            Message = "Welcome to the task List page";
         }
         public ICommand GoToTaskPageCommand
         {
@@ -41,12 +40,12 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
         }
 
         
-        public string Message
+        public string RecipeName
         {
-            get { return message; }
+            get { return recipeName; }
             set
             {
-                message = value;
+                recipeName = value;
                 RaisePropertyChanged();
             }
         }
@@ -70,9 +69,10 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
             this.navService.AppFrame = base.AppFrame;
             if (e.Parameter != null)
             {
-                List<Task> result=(List<Task>)e.Parameter;
-            
+                var recipe = (Recipe)e.Parameter;
+                List<Task> result= recipe.tasks;
                 TaskList = new ObservableCollection<Task>(result);
+                RecipeName = recipe.name;
                 Estado = false;
             }
             
