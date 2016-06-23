@@ -26,7 +26,15 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
         private DelegateCommand loadRecipeCommand;
         private Recipe recipe;
         private string photo;
- 
+        private List<Ingredient> ingredientList;
+
+        public List<Ingredient> IngredientList
+        {
+            get { return ingredientList; }
+            set { ingredientList = value; RaisePropertyChanged(); }
+        }
+
+
         private Visibility _advancedFormat = Visibility.Visible;
 
         public Visibility AdvancedFormat
@@ -88,6 +96,7 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
                 Title = recipe.author;
                 Photo = recipe.photo;
                 TaskList = recipe.tasks;
+                
                 RaisePropertyChanged();
             }
         }

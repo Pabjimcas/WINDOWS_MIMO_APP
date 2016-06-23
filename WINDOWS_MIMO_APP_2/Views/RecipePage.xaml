@@ -16,6 +16,21 @@
         <TextBlock RelativePanel.Below="favorite" x:Name="title"  Text="{Binding Title,Mode=TwoWay}"  />
         <Button RelativePanel.Below="title" x:Name="splitTask" Content="Split Task" Command="{Binding GoToSplitTaskPageCommand}" HorizontalAlignment="Center" VerticalAlignment="Center" />
         <Image RelativePanel.Below="splitTask" Source="{Binding Photo}"/>
-    
+        <ListView x:Name="ListTask" Opacity="1" ItemsSource ="{Binding IngredientList}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="{Binding name}"></TextBlock>
+                        <TextBlock Grid.Column="1" Text="{Binding description}"></TextBlock>
+                    </Grid>
+
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
     </RelativePanel>
 </base:ViewBase>
