@@ -150,6 +150,7 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
         public override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
+           
             this.navService.AppFrame = base.AppFrame;
             
             LoadRecipe((int)e.Parameter);
