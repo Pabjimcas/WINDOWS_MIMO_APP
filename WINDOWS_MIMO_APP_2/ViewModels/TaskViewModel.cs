@@ -10,6 +10,7 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
     using WINDOWS_MIMO_APP_2.ViewModels.Base;
     using Windows.UI.Xaml.Navigation;
     using Models;
+    using Windows.UI.Xaml;
     public class TaskViewModel : ViewModelBase
     {
         private string message;
@@ -18,11 +19,18 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
         private string photo;
         private string description;
         private int? seconds;
+        private Visibility _advancedFormat = Visibility.Visible;
 
         public TaskViewModel(INavigationService navService)
         {
             this.navService = navService;
             Message = "Welcome to the task page";
+        }
+
+        public Visibility AdvancedFormat
+        {
+            get { return _advancedFormat; }
+            set { _advancedFormat = value; RaisePropertyChanged(); }
         }
 
         public string TaskTitle
@@ -83,6 +91,13 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
                 Photo = task.photo;
                 Description = task.description;
                 Seconds = task.seconds;
+                if(Seconds != null)
+                {
+                    AdvancedFormat = Visibility.Visible;
+                }else
+                {
+                    AdvancedFormat = Visibility.Collapsed;
+                }
             }
         }
 

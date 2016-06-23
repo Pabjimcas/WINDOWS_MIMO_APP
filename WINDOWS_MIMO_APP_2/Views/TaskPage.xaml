@@ -12,7 +12,6 @@
 
     <Page.Resources>
         <converters:SecondsToMinutes x:Key="conversorMinutos"/>
-        <converters:ShowTime x:Key="muestraTiempo"/>
     </Page.Resources>
 
     <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -20,7 +19,7 @@
         <TextBlock Text="{Binding Task}" x:Name="TaskTitle" RelativePanel.Below="texto" HorizontalAlignment="Center"/>
         <Image RelativePanel.Below="TaskTitle" x:Name="TaskImage" Source="{Binding Photo}" Height="200"/>
         <TextBlock Margin="20" Text="{Binding Description}" x:Name="TaskDescription" RelativePanel.Below="TaskImage"/>
-        <StackPanel Background="White" Padding="5" Visibility="{Binding Seconds, Converter={StaticResource muestraTiempo}}" Orientation="Horizontal" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="TaskDescription">
+        <StackPanel Background="White" Padding="5" Visibility="{Binding Path=AdvancedFormat,Mode=TwoWay}" Orientation="Horizontal" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="TaskDescription">
             <Image Width="50" Source="/Assets/AlarmaReposo.scale-100.png"></Image>
             <RelativePanel>
                 <TextBlock RelativePanel.AlignVerticalCenterWithPanel="True"  Text="{Binding Seconds,Converter={StaticResource conversorMinutos}}"/>

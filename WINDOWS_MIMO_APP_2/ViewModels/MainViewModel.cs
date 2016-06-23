@@ -22,6 +22,7 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
         private DelegateCommand goToRecipePageCommand;
         private DelegateCommand goToRecipeListPageCommand;
         private ObservableCollection<RecipeFavorite> favoriteRecipes;
+        private RecipeFavorite randomRecipe;
         public MainViewModel(INavigationService navService, IDbService dbService)
         {
             this.navService = navService;
@@ -29,21 +30,33 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
             this.goToRecipeListPageCommand = new DelegateCommand(GoToRecipeListPageExecute);
             this.goToRecipePageCommand = new DelegateCommand(GoToRecipePageExecute);
 
+            this.generateRandomRecipe();
             
         }
 
-        public ObservableCollection<RecipeFavorite> FavoriteRecipes
+        public void generateRandomRecipe()
         {
-            get { return this.favoriteRecipes; }
+            var favoritesList = this.dbService.getFavorites();
+        
+            Random rnd = new Random();
+            int index = rnd.Next(0, favoritesList.Count);
+            RandomRecipe = favoritesList.ElementAt(index);
+        }
+
+        public RecipeFavorite RandomRecipe
+        {
+            get
+            {
+                return this.randomRecipe;
+            }
             set
             {
-                this.favoriteRecipes = value;
+                this.randomRecipe = value;
                 RaisePropertyChanged();
             }
         }
 
-
-
+     
         public ICommand GoToRecipePageCommand
         {
             get { return this.goToRecipePageCommand; }
@@ -57,13 +70,11 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
         {
             base.OnNavigatedTo(e);
             this.navService.AppFrame = base.AppFrame;
-            var favoritesList = this.dbService.getFavorites();
-            FavoriteRecipes = new ObservableCollection<RecipeFavorite>(favoritesList);
         }
 
         private void GoToRecipePageExecute()
         {
-            this.navService.NavigateToRecipePage(8);
+            this.navService.NavigateToRecipePage(randomRecipe.id);
         }
         private void GoToRecipeListPageExecute()
         {
