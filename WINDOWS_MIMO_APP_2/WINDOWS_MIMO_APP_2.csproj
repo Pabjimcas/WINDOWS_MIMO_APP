@@ -95,6 +95,8 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Converters\ShowTime.cs" />
+    <Compile Include="Views\Converters\SecondsToMinutes.cs" />
     <Compile Include="Models\Favorites.cs" />
     <Compile Include="Models\RecipeModel.cs" />
     <Compile Include="Models\RecipeListModel.cs" />
@@ -144,6 +146,12 @@
     <None Include="WINDOWS_MIMO_APP_2_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\AlarmaReposo.scale-100.png" />
+    <Content Include="Assets\AlarmaReposo.scale-140.png" />
+    <Content Include="Assets\AlarmaReposo.scale-240.png" />
+    <Content Include="Assets\TituloApp.scale-100.png" />
+    <Content Include="Assets\TituloApp.scale-140.png" />
+    <Content Include="Assets\TituloApp.scale-240.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -194,6 +202,7 @@
       <Name>SQLite for Universal Windows Platform</Name>
     </SDKReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

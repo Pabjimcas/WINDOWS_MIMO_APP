@@ -4,29 +4,39 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:WINDOWS_MIMO_APP_2.Views"
     xmlns:base="using:WINDOWS_MIMO_APP2.Views.Base"
+    xmlns:converters="using:WINDOWS_MIMO_APP_2.Converters"
     DataContext="{Binding SplitTaskVM, Source={StaticResource Locator}}"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
+    <Page.Resources>
+        <converters:SecondsToMinutes x:Key="conversorMinutos"/>
+        <converters:ShowTime x:Key="muestraTiempo"/>
+    </Page.Resources>
+
     <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Grid x:Name="LayoutRoot" Background="Transparent">
-            <Pivot ItemsSource="{Binding TaskList}" Title="Mi receta" x:Name="pivot" CommonNavigationTransitionInfo.IsStaggerElement="True">
-                <Pivot.HeaderTemplate>
+        <StackPanel x:Name="LayoutRoot" Background="Transparent">
+            <TextBlock x:Name="texto" TextWrapping="Wrap" TextAlignment="Center" Text="{Binding RecipeName}" FontSize="32"/>
+            <FlipView ItemsSource="{Binding TaskList}">
+                <FlipView.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding Header}"></TextBlock>
+                        <RelativePanel Height="auto">
+                            <Image RelativePanel.AlignTopWithPanel="True" x:Name="TaskImage" Source="{Binding  photo}" Height="200"/>
+                            <TextBlock RelativePanel.Below="TaskImage" Margin="20" Text="{Binding description}" x:Name="TaskDescription"/>
+                            <StackPanel Background="White" Padding="5" Visibility="{Binding seconds, Converter={StaticResource muestraTiempo}}" Orientation="Horizontal" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="TaskDescription">
+                                <Image Width="50" Source="/Assets/AlarmaReposo.scale-100.png"></Image>
+                                <RelativePanel>
+                                    <TextBlock RelativePanel.AlignVerticalCenterWithPanel="True"  Text="{Binding seconds,Converter={StaticResource conversorMinutos}}"/>
+                                </RelativePanel>
+                            </StackPanel>
+                            
+                        </RelativePanel>
+                       
                     </DataTemplate>
-                </Pivot.HeaderTemplate>
-                <Pivot.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Vertical">
-                            <Image x:Name="TaskImage" Source="{Binding  Task.photo}"/>
-                            <TextBlock Text="{Binding Task.description}" x:Name="TaskDescription"/>
-                            <TextBlock Text="{Binding Task.seconds}" x:Name="TaskSeconds"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </Pivot.ItemTemplate>
-            </Pivot>
-        </Grid>
+                </FlipView.ItemTemplate>
+            </FlipView>
+           
+        </StackPanel>
     </RelativePanel>
 </base:ViewBase>
