@@ -26,9 +26,9 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
         private DelegateCommand loadRecipeCommand;
         private Recipe recipe;
         private string photo;
-        private List<Ingredient> ingredientList;
+        private List<MeasureIngredient> ingredientList;
 
-        public List<Ingredient> IngredientList
+        public List<MeasureIngredient> IngredientList
         {
             get { return ingredientList; }
             set { ingredientList = value; RaisePropertyChanged(); }
@@ -47,6 +47,7 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
         private string title;
         private DelegateCommand goToSplitTaskPageCommand;
         private IDialogService dialogService;
+        private DelegateCommand goToIngredientListPageCommand;
 
         public RecipeViewModel(INavigationService navService, IRecipeService recipeService, IDbService dbService,IDialogService dialogService)
         {
@@ -56,9 +57,15 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
             this.dialogService = dialogService;
             this.goToTaskListPageCommand = new DelegateCommand(GoToTaskListPageExecute);
             this.goToSplitTaskPageCommand = new DelegateCommand(GoToSplitTaskPageExecute);
+            this.goToIngredientListPageCommand = new DelegateCommand(GoToIngredientListPageExecute);
             loadRecipeCommand = new DelegateCommand(LoadRecipe, null);
             this.addToFavoritesCommand = new DelegateCommand(AddToFavoritesExecute);
             Message = "Welcome to the recipe page";
+        }
+
+        private void GoToIngredientListPageExecute()
+        {
+            this.navService.NavigateToIngredientListPage(Recipe.measureIngredients);
         }
 
         private void AddToFavoritesExecute()
@@ -96,7 +103,7 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
                 Title = recipe.author;
                 Photo = recipe.photo;
                 TaskList = recipe.tasks;
-                
+                IngredientList = recipe.measureIngredients;
                 RaisePropertyChanged();
             }
         }
@@ -104,6 +111,10 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
         public ICommand GoToTaskListPageCommand
         {
             get { return this.goToTaskListPageCommand; }
+        }
+        public ICommand GoToIngredientListPageCommand
+        {
+            get { return this.goToIngredientListPageCommand; }
         }
         public ICommand GoToSplitTaskPageCommand
         {
