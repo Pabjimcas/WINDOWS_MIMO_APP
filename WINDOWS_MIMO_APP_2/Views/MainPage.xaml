@@ -9,7 +9,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     mc:Ignorable="d">
-    <RelativePanel>
+    <RelativePanel  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Image x:Name="Logo" Source="/Assets/TituloApp.scale-100.png" RelativePanel.AlignHorizontalCenterWithPanel="True" Height="50" />
         <Button Command="{Binding GoToRecipePageCommand}" RelativePanel.Below="Logo" RelativePanel.AlignHorizontalCenterWithPanel="True">
             <Button.Content>

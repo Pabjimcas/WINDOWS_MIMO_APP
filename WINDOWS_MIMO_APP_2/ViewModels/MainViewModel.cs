@@ -39,8 +39,11 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
             var favoritesList = this.dbService.getFavorites();
         
             Random rnd = new Random();
-            int index = rnd.Next(0, favoritesList.Count);
-            RandomRecipe = favoritesList.ElementAt(index);
+            if (favoritesList.Count > 0)
+            {
+                int index = rnd.Next(0, favoritesList.Count);
+                RandomRecipe = favoritesList.ElementAt(index);
+            }
         }
 
         public RecipeFavorite RandomRecipe
