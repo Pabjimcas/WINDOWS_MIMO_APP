@@ -35,6 +35,16 @@
             if (AppFrame != null)
                 AppFrame.Navigate(typeof(RecipeListPage), argument);
         }
+        public void NavigateToIngredientListPage()
+        {
+            NavigateToIngredientListPage<Object>(null);
+        }
+
+        public void NavigateToIngredientListPage<T>(T argument)
+        {
+            if (AppFrame != null)
+                AppFrame.Navigate(typeof(IngredientListPage), argument);
+        }
         public void NavigateToTaskListPage()
         {
             NavigateToTaskListPage<Object>(null);
@@ -65,7 +75,5 @@
             if (AppFrame != null)
                 AppFrame.Navigate(typeof(SplitTaskPage), argument);
         }
-
-
     }
 }

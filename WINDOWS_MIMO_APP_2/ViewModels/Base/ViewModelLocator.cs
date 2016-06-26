@@ -23,6 +23,7 @@
             builder.RegisterType<MainViewModel>();
             builder.RegisterType<RecipeViewModel>();
             builder.RegisterType<RecipeListViewModel>();
+            builder.RegisterType<IngredientListViewModel>();
             builder.RegisterType<TaskListViewModel>();
             builder.RegisterType<TaskViewModel>();
             builder.RegisterType<PivotTaskViewModel>();
@@ -47,6 +48,10 @@
         public RecipeListViewModel RecipeListVM
         {
             get { return this.container.Resolve<RecipeListViewModel>(); }
+        }
+        public IngredientListViewModel IngredientListVM
+        {
+            get { return this.container.Resolve<IngredientListViewModel>(); }
         }
         public TaskListViewModel TaskListVM
         {

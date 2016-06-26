@@ -9,6 +9,8 @@
         void NavigateToRecipePage<T>(T argument);
         void NavigateToRecipeListPage();
         void NavigateToRecipeListPage<T>(T argument);
+        void NavigateToIngredientListPage();
+        void NavigateToIngredientListPage<T>(T argument);
         void NavigateToTaskListPage();
         void NavigateToTaskListPage<T>(T argument);
         void NavigateToTaskPage();

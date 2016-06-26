@@ -1,6 +1,7 @@
 ﻿{
   "dependencies": {
     "Autofac": "3.5.2",
+    "JISoft.Rating": "1.0.3",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0",
     "Newtonsoft.Json": "8.0.3",
     "SQLite.Net-PCL": "3.1.1"
