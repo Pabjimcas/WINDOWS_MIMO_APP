@@ -46,11 +46,5 @@ namespace WINDOWS_MIMO_APP_2.Models
         public int difficulty { get; set; }
         public string photo { get; set; }
         public int portions { get; set; }
-        public List<IngredientMeasure> ingredientList{ get;set;}
-    }
-    public class IngredientMeasure
-    {
-        public MeasureIngredient measure { get; set; }
-        public Ingredient ingredient { get; set; }
     }
 }
