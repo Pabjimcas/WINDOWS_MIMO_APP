@@ -95,6 +95,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Converters\ShowPhoto.cs" />
     <Compile Include="Views\Converters\ShowTime.cs" />
     <Compile Include="Views\Converters\SecondsToMinutes.cs" />
     <Compile Include="Models\Favorites.cs" />
@@ -149,6 +150,9 @@
     <Content Include="Assets\AlarmaReposo.scale-100.png" />
     <Content Include="Assets\AlarmaReposo.scale-140.png" />
     <Content Include="Assets\AlarmaReposo.scale-240.png" />
+    <Content Include="Assets\default.scale-100.jpg" />
+    <Content Include="Assets\default.scale-140.jpg" />
+    <Content Include="Assets\default.scale-240.jpg" />
     <Content Include="Assets\TituloApp.scale-100.png" />
     <Content Include="Assets\TituloApp.scale-140.png" />
     <Content Include="Assets\TituloApp.scale-240.png" />

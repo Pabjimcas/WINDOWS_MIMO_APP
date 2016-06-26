@@ -13,6 +13,7 @@
     <Page.Resources>
         <converters:SecondsToMinutes x:Key="conversorMinutos"/>
         <converters:ShowTime x:Key="muestraTiempo"/>
+        <converters:ShowPhoto x:Key="muestraFoto"/>
     </Page.Resources>
 
     <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -22,8 +23,8 @@
                 <FlipView.ItemTemplate>
                     <DataTemplate>
                         <RelativePanel Height="auto">
-                            <Image RelativePanel.AlignTopWithPanel="True" x:Name="TaskImage" Source="{Binding  photo}" Height="200"/>
-                            <TextBlock RelativePanel.Below="TaskImage" Margin="20" Text="{Binding description}" x:Name="TaskDescription"/>
+                            <Image RelativePanel.AlignTopWithPanel="True" x:Name="TaskImage" Source="{Binding  photo, Converter={StaticResource muestraFoto}}" Height="200"/>
+                            <TextBlock TextWrapping="Wrap" RelativePanel.Below="TaskImage" Margin="20" Text="{Binding description}" x:Name="TaskDescription"/>
                             <StackPanel Background="White" Padding="5" Visibility="{Binding seconds, Converter={StaticResource muestraTiempo}}" Orientation="Horizontal" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="TaskDescription">
                                 <Image Width="50" Source="/Assets/AlarmaReposo.scale-100.png"></Image>
                                 <RelativePanel>

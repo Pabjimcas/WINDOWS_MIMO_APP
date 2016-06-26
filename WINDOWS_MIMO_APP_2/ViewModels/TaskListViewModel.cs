@@ -20,6 +20,16 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
         private INavigationService   navService;
         private DelegateCommand goToTaskPageCommand;
         private DelegateCommand loadTaskListCommand;
+        private ObservableCollection<Task> taskList;
+
+        public ObservableCollection<Task> TaskList
+        {
+            get { return taskList; }
+            set { taskList = value;
+                RaisePropertyChanged();
+            }
+        }
+
         private bool estado = true;
 
         public bool Estado
@@ -61,8 +71,6 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
 
         }
 
-        public ObservableCollection<Task> TaskList { get; private set; }
-
         public override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
@@ -71,7 +79,8 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
             {
                 var recipe = (Recipe)e.Parameter;
                 List<Task> result= recipe.tasks;
-                TaskList = new ObservableCollection<Task>(result);
+                TaskList = new ObservableCollection<Task>(result.OrderBy(t => t.name));
+                
                 RecipeName = recipe.name;
                 Estado = false;
             }

@@ -20,11 +20,11 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
         private string description;
         private int? seconds;
         private Visibility _advancedFormat = Visibility.Visible;
+        private string name;
 
         public TaskViewModel(INavigationService navService)
         {
             this.navService = navService;
-            Message = "Welcome to the task page";
         }
 
         public Visibility AdvancedFormat
@@ -73,12 +73,12 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
             }
         }
 
-        public string Message
+        public string Name
         {
-            get { return message; }
+            get { return name; }
             set
             {
-                message = value;
+                name = value;
                 RaisePropertyChanged();
             }
         }
@@ -87,10 +87,16 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
         {
             if (task != null)
             {
-                TaskTitle = task.name;
-                Photo = task.photo;
+                name = "Paso "+task.name;
                 Description = task.description;
                 Seconds = task.seconds;
+                if(Photo != null){
+                    Photo = task.photo;
+                }
+                else
+                {
+                    Photo = "/Assets/default.scale-100.jpg";
+                }
                 if(Seconds != null)
                 {
                     AdvancedFormat = Visibility.Visible;
