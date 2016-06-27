@@ -11,7 +11,7 @@
     mc:Ignorable="d">
     <RelativePanel  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Image x:Name="Logo" Source="/Assets/TituloApp.scale-100.png" RelativePanel.AlignHorizontalCenterWithPanel="True" Height="50" />
-        <Button IsEnabled="{Binding ButtonEnabled}" Command="{Binding GoToRecipePageCommand}" RelativePanel.Below="Logo" RelativePanel.AlignHorizontalCenterWithPanel="True">
+        <Button x:Name="RandomFavorite" IsEnabled="{Binding ButtonEnabled}" Command="{Binding GoToRecipePageCommand}" RelativePanel.Below="Logo" RelativePanel.AlignHorizontalCenterWithPanel="True">
             <Button.Content>
                 <StackPanel >
                     <TextBlock x:Name="Title" Text="{Binding Name}" />
@@ -20,6 +20,7 @@
             </Button.Content>
         
         </Button>
+        <Button Content="Picker" RelativePanel.Below="RandomFavorite" Command="{Binding OpenRecipePictureCommand}"></Button>
         <Button Content="Listado de Recetas" Command="{Binding GoToRecipeListPageCommand}" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Margin="20"/>
     </RelativePanel>
 

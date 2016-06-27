@@ -13,6 +13,7 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
     using System.Text;
     using System.Threading.Tasks;
     using System.Windows.Input;
+    using Windows.Storage.Pickers;
     using Windows.UI.Xaml.Navigation;
 
     public class MainViewModel : ViewModelBase
@@ -21,6 +22,7 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
         private IDbService dbService;
         private DelegateCommand goToRecipePageCommand;
         private DelegateCommand goToRecipeListPageCommand;
+        private DelegateCommand openRecipePictureCommand;
         private ObservableCollection<RecipeFavorite> favoriteRecipes;
         private RecipeFavorite randomRecipe;
         private string name;
@@ -32,6 +34,7 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
             this.dbService = dbService;
             this.goToRecipeListPageCommand = new DelegateCommand(GoToRecipeListPageExecute);
             this.goToRecipePageCommand = new DelegateCommand(GoToRecipePageExecute);
+            this.openRecipePictureCommand = new DelegateCommand(OpenRecipePictureExecute);
 
             buttonEnabled = true;
             this.generateRandomRecipe();
@@ -120,10 +123,27 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
             get { return this.goToRecipeListPageCommand; }
         }
 
+        public ICommand OpenRecipePictureCommand
+        {
+            get { return this.openRecipePictureCommand; }
+        }
+
         public override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
             this.navService.AppFrame = base.AppFrame;
+        }
+
+        private void OpenRecipePictureExecute()
+        {
+            FileOpenPicker picker = new FileOpenPicker();
+            picker.ViewMode = PickerViewMode.Thumbnail;
+            picker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
+            
+            picker.FileTypeFilter.Add(".jpg");
+            picker.FileTypeFilter.Add(".jpeg");
+            picker.FileTypeFilter.Add(".png");
+            var result = picker.PickSingleFileAsync();
         }
 
         private void GoToRecipePageExecute()
