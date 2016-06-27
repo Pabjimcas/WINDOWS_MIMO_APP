@@ -27,6 +27,7 @@
             builder.RegisterType<TaskListViewModel>();
             builder.RegisterType<TaskViewModel>();
             builder.RegisterType<PivotTaskViewModel>();
+            builder.RegisterType<ImagesViewModel>();
 
             this.container = builder.Build();
         }
@@ -64,6 +65,10 @@
         public PivotTaskViewModel SplitTaskVM
         {
             get { return this.container.Resolve<PivotTaskViewModel>(); }
+        }
+        public ImagesViewModel ImagesVM
+        {
+            get { return this.container.Resolve<ImagesViewModel>(); }
         }
 
     }

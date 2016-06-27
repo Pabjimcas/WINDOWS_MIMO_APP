@@ -96,6 +96,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\IngredientListViewModel.cs" />
+    <Compile Include="ViewModels\ImagesViewModel.cs" />
     <Compile Include="Views\Converters\ShowPhoto.cs" />
     <Compile Include="Views\Converters\ShowTime.cs" />
     <Compile Include="Views\Converters\SecondsToMinutes.cs" />
@@ -125,6 +126,9 @@
     <Compile Include="ViewModels\Base\DelegateCommand.cs" />
     <Compile Include="ViewModels\Base\ViewModelBase.cs" />
     <Compile Include="ViewModels\Base\ViewModelLocator.cs" />
+    <Compile Include="Views\ImagesPage.xaml.cs">
+      <DependentUpon>ImagesPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\PivotTaskPage.xaml.cs">
       <DependentUpon>PivotTaskPage.xaml</DependentUpon>
     </Compile>
@@ -175,6 +179,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="Views\MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ImagesPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
