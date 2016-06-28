@@ -18,6 +18,6 @@
 
         bool recipeFavoriteExists(string name);
 
-        RecipeFavorite getFavoriteRecipe(int id);
+        Recipe getFavoriteRecipe(int id);
     }
 }

@@ -47,7 +47,7 @@
 
     [Table("Ingredient")]
     public class IngredientFavorite
-    {   
+    {   public IngredientFavorite() { }
         public IngredientFavorite (Ingredient ingredient)
         {
             this.baseType = ingredient.baseType;
@@ -79,6 +79,7 @@
     [Table("MeasureIngredient")]
     public class MeasureIngredientFavorite
     {
+        public MeasureIngredientFavorite() { }
         public MeasureIngredientFavorite(MeasureIngredient measureIngredient,int ingredientId,int recipeId)
         {
             this.ingredientId = ingredientId;
@@ -105,12 +106,14 @@
     [Table("Task")]
     public class TaskFavorite
     {
+        public TaskFavorite() { }
         public TaskFavorite (Task task,int recipeId)
         {
             this.name = task.name;
             this.photo = task.photo;
             this.recipeId = recipeId;
             this.seconds = task.seconds;
+            this.description = task.description;
         }
         [Column("ID"), PrimaryKey(), AutoIncrement()]
         public int id { get; set; }

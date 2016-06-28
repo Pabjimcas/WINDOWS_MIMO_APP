@@ -87,7 +87,7 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
         {
             if(item.type != null)
             {
-                this.dbService.getFavoriteRecipe(item.id);
+                Recipe = this.dbService.getFavoriteRecipe(item.id);
             }else
             {
                 var result = await this.recipeService.GetRecipeAsync(item.id);
@@ -173,8 +173,8 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
             this.navService.AppFrame = base.AppFrame;
 
             var json = (String)e.Parameter;
-
-            RecipeList recipeItem = (RecipeList) JsonConvert.DeserializeObject(json);
+            
+             RecipeList recipeItem=JsonConvert.DeserializeObject<RecipeList>(json);
             
             LoadRecipe(recipeItem);
         }
