@@ -1,11 +1,7 @@
 ﻿namespace WINDOWS_MIMO_APP_2.Models
 {
     using SQLite.Net.Attributes;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
+    
     [Table("Recipe")]
     public class RecipeFavorite
     {
