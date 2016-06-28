@@ -18,7 +18,8 @@
         <Button RelativePanel.Below="title" x:Name="splitTask" Content="Split Task" Command="{Binding GoToSplitTaskPageCommand}" HorizontalAlignment="Center" VerticalAlignment="Center" />
         <Image RelativePanel.Below="ingredientList" Source="{Binding Photo}" x:Name="recipePhoto"/>
         <Button RelativePanel.Below="splitTask" x:Name="ingredientList" Content="Ingredient List" Command="{Binding GoToIngredientListPageCommand}" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <Grid RelativePanel.Below="recipePhoto" x:Name="score">
+        <Image x:Name="imageControl" RelativePanel.Below="ingredientList" Width="200" Height="200"/>
+        <Grid RelativePanel.Below="imageControl" x:Name="score">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="100"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
