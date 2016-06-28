@@ -136,14 +136,7 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
 
         private void OpenRecipePictureExecute()
         {
-            FileOpenPicker picker = new FileOpenPicker();
-            picker.ViewMode = PickerViewMode.Thumbnail;
-            picker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
-            
-            picker.FileTypeFilter.Add(".jpg");
-            picker.FileTypeFilter.Add(".jpeg");
-            picker.FileTypeFilter.Add(".png");
-            var result = picker.PickSingleFileAsync();
+            this.navService.NavigateToImagesPage("Images");
         }
 
         private void GoToRecipePageExecute()

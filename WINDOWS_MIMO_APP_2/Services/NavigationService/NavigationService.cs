@@ -75,5 +75,16 @@
             if (AppFrame != null)
                 AppFrame.Navigate(typeof(SplitTaskPage), argument);
         }
+
+        public void NavigateToImagesPage()
+        {
+            NavigateToImagesPage<Object>(null);
+        }
+
+        public void NavigateToImagesPage<T>(T argument)
+        {
+            if (AppFrame != null)
+                AppFrame.Navigate(typeof(ImagesPage), argument);
+        }
     }
 }

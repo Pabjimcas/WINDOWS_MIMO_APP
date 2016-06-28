@@ -17,6 +17,8 @@
         void NavigateToTaskPage<T>(T argument);
         void NavigateToSplitTaskPage();
         void NavigateToSplitTaskPage<T>(T argument);
+        void NavigateToImagesPage();
+        void NavigateToImagesPage<T>(T argument);
 
     }
 }
