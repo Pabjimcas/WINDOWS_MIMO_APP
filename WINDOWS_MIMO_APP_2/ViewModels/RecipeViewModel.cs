@@ -15,6 +15,7 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
     using System.Collections.ObjectModel;
     using Services.DialogService;
     using Windows.UI.Xaml;
+    using Newtonsoft.Json;
     public class RecipeViewModel : ViewModelBase
     {
         private string message;
@@ -23,7 +24,6 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
         private IDbService dbService;
         private DelegateCommand goToTaskListPageCommand;
         private DelegateCommand addToFavoritesCommand;
-        private DelegateCommand loadRecipeCommand;
         private Recipe recipe;
         private string photo;
         private List<MeasureIngredient> ingredientList;
@@ -58,7 +58,6 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
             this.goToTaskListPageCommand = new DelegateCommand(GoToTaskListPageExecute);
             this.goToSplitTaskPageCommand = new DelegateCommand(GoToSplitTaskPageExecute);
             this.goToIngredientListPageCommand = new DelegateCommand(GoToIngredientListPageExecute);
-            loadRecipeCommand = new DelegateCommand(LoadRecipe, null);
             this.addToFavoritesCommand = new DelegateCommand(AddToFavoritesExecute);
             Message = "Welcome to the recipe page";
         }
@@ -84,14 +83,23 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
 
 
 
-        private async void LoadRecipe(int id)
+        private async void LoadRecipe(RecipeList item)
         {
-            var result = await this.recipeService.GetRecipeAsync(id);
-
-            if (result != null)
+            if(item.type != null)
             {
-                Recipe = result;
+                this.dbService.getFavoriteRecipe(item.id);
+            }else
+            {
+                var result = await this.recipeService.GetRecipeAsync(item.id);
+
+                if (result != null)
+                {
+                    Recipe = result;
+                }
             }
+
+
+            
         }
         public Recipe Recipe
         {
@@ -163,8 +171,12 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
             base.OnNavigatedTo(e);
            
             this.navService.AppFrame = base.AppFrame;
+
+            var json = (String)e.Parameter;
+
+            RecipeList recipeItem = (RecipeList) JsonConvert.DeserializeObject(json);
             
-            LoadRecipe((int)e.Parameter);
+            LoadRecipe(recipeItem);
         }
         public override void OnNavigatedFrom(NavigationEventArgs e)
         {

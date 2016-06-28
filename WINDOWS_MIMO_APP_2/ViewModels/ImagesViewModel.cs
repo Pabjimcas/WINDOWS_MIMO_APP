@@ -10,15 +10,19 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
     using WINDOWS_MIMO_APP_2.ViewModels.Base;
     using Windows.UI.Xaml.Navigation;
     using System.Collections.ObjectModel;
-    using Models;
     using Windows.UI.Xaml.Input;
     using Windows.Storage.Pickers;
     using Windows.Storage;
+    using Windows.UI.Xaml.Media.Imaging;
+    using Windows.Storage.Streams;
+    using System.Threading.Tasks;
     public class ImagesViewModel : ViewModelBase
     {
         private INavigationService   navService;
         private string title;
-        private ObservableCollection<StorageFile> imageList;
+        private ObservableCollection<BitmapImage> imageList;
+        
+
 
         public string Title
         {
@@ -31,9 +35,10 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
         {
             this.navService = navService;
             this.title = "Imágenes de recetas realizadas";
+           
         }
 
-        public ObservableCollection<StorageFile> ImageList {
+        public ObservableCollection<BitmapImage> ImageList {
             get
             {
                 return imageList;
@@ -41,6 +46,7 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
             set
             {
                 this.imageList = value;
+                
                 RaisePropertyChanged();
             }
         }
@@ -60,12 +66,16 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
             {
                 Title = files.Count+"";
 
-                ImageList = new ObservableCollection<StorageFile>(files);
-                // Application now has read/write access to the picked file(s)
-                /*foreach (Windows.Storage.StorageFile file in files)
+                List<BitmapImage> list = new List<BitmapImage>();
+
+                foreach (Windows.Storage.StorageFile file in files)
                 {
-                    imageList.Add(file.Name);
-                }*/
+                    list.Add(GetImage(file));
+                }
+                
+                ImageList = new ObservableCollection<BitmapImage>(list);
+                
+                
             }
             else
             {
@@ -73,7 +83,22 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
             }
 
         }
+        public BitmapImage GetImage(StorageFile storageFile)
+        {
+            var bitmapImage = new BitmapImage();
+            GetImageAsync(bitmapImage, storageFile);
 
+            // Create an image or return a bitmap that's started loading
+            return bitmapImage;
+        }
+
+        private async Task GetImageAsync(BitmapImage bitmapImage, StorageFile storageFile)
+        {
+            using (var stream = (FileRandomAccessStream)await storageFile.OpenAsync(FileAccessMode.Read))
+            {
+                bitmapImage.SetSource(stream);
+            }
+        }
         public override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);

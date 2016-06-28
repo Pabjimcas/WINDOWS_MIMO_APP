@@ -1,0 +1,29 @@
+﻿<base:ViewBase
+    x:Class="WINDOWS_MIMO_APP_2.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WINDOWS_MIMO_APP_2"
+    xmlns:base="using:WINDOWS_MIMO_APP2.Views.Base"
+    DataContext="{Binding MainVM, Source={StaticResource Locator}}"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    mc:Ignorable="d">
+    <RelativePanel  Background="Blue" >
+        <Image x:Name="Logo" Source="/Assets/TituloApp.scale-100.png" RelativePanel.AlignHorizontalCenterWithPanel="True" Height="50" />
+        <Button x:Name="RandomFavorite" IsEnabled="{Binding ButtonEnabled}" Command="{Binding GoToRecipePageCommand}" RelativePanel.Below="Logo" RelativePanel.AlignHorizontalCenterWithPanel="True">
+            <Button.Content>
+                <StackPanel >
+                    <TextBlock x:Name="Title" Text="{Binding Name}" />
+                    <Image Source="{Binding Photo}" />
+                </StackPanel>
+            </Button.Content>
+        
+        </Button>
+        <Button Content="Picker" RelativePanel.Below="RandomFavorite" Command="{Binding OpenRecipePictureCommand}"></Button>
+        <Button Content="Listado de Recetas" Command="{Binding GoToRecipeListPageCommand}" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Margin="20"/>
+    </RelativePanel>
+
+
+
+</base:ViewBase>

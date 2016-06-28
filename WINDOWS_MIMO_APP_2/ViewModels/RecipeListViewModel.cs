@@ -3,16 +3,17 @@
 namespace WINDOWS_MIMO_APP_2.ViewModels
 {
     using Services.NavigationService;
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
-    using WINDOWS_MIMO_APP_2.ViewModels.Base;
     using Windows.UI.Xaml.Navigation;
     using System.Collections.ObjectModel;
     using Models;
     using Windows.UI.Xaml.Controls;
+    using Base;
+    using System;
+    using Newtonsoft.Json;
     public class RecipeListViewModel : ViewModelBase
     {
         private IRecipeService recipeService;
@@ -43,13 +44,18 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
             var recipeItemlist = arg.ClickedItem as RecipeList;
             if (recipeItemlist != null)
             {
-                var st =recipeItemlist.id ;
-                this.navService.NavigateToRecipePage(st);
-            }else
+                string json = JsonConvert.SerializeObject(recipeItemlist);
+                this.navService.NavigateToRecipePage(json);
+            }
+            else
             {
-                this.navService.NavigateToRecipePage(1);
+                RecipeList item = new RecipeList();
+                item.id = 1;
+                string json = JsonConvert.SerializeObject(item);
+                this.navService.NavigateToRecipePage(item);
             }
             
+
         }
 
         

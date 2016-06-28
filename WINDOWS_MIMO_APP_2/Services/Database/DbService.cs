@@ -70,6 +70,22 @@ namespace WINDOWS_MIMO_APP_2.Services.Database
             }
         }
 
+        public Recipe getFavoriteRecipe(int id)
+        {
+            using (var cnx = new SQLiteConnection(new SQLitePlatformWinRT(), dbPath))
+            {
+                /*var recipeFav = cnx.Query<RecipeFavorite>("Select * from Recipe where id = " + id).FirstOrDefault();
+                var measures = cnx.Query<MeasureIngredientFavorite>("Select * from MeasureIngredient where recipe_id = " + id);
+                var tasks = cnx.Query<TaskFavorite>("Select * from Task where recipe_id = " + id);
+                var ingredients = cnx.Query<IngredientFavorite>("Select * from MeasureIngredient as mi inner join Ingredient as i where mi.ingredient_id = i.id and mi.recipe_id = " + id);
+                */
+                Recipe recipe = new Recipe();
+                
+
+                return recipe;
+            }
+        }
+
         public void removeRecipeFavorite(int id)
         {
             using (var cnx = new SQLiteConnection(new SQLitePlatformWinRT(), dbPath))

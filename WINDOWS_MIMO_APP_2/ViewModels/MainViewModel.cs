@@ -4,6 +4,7 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
 {
     using Base;
     using Models;
+    using Newtonsoft.Json;
     using Services.Database;
     using Services.NavigationService;
     using System;
@@ -141,7 +142,11 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
 
         private void GoToRecipePageExecute()
         {
-            this.navService.NavigateToRecipePage(randomRecipe.id);
+            RecipeList item = new RecipeList();
+            item.id = randomRecipe.id;
+            item.type = "favorites";
+            string json = JsonConvert.SerializeObject(item);
+            this.navService.NavigateToRecipePage(json);
         }
         private void GoToRecipeListPageExecute()
         {

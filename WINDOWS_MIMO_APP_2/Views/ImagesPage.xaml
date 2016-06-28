@@ -16,14 +16,13 @@
                 <FlipView.ItemTemplate>
                     <DataTemplate>
                         <RelativePanel Height="auto">
-                            <TextBlock x:Name="texto" TextWrapping="Wrap" TextAlignment="Center" Text="{Binding Name}" FontSize="32"/>
-                            <Image RelativePanel.AlignTopWithPanel="True" x:Name="Image" Source="{Binding Path}" Height="200"/>
+                            <Image RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" x:Name="Image" Source="{Binding}"/>
                         </RelativePanel>
                        
                     </DataTemplate>
                 </FlipView.ItemTemplate>
             </FlipView>
-           
+            
         </StackPanel>
     </RelativePanel>
 </base:ViewBase>
