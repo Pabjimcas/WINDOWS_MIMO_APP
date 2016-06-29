@@ -200,6 +200,15 @@ namespace WINDOWS_MIMO_APP_2.Services.Database
             }
         }
 
+        public List<RecipeList> getFavoriteRecipeList()
+        {
+            using (var cnx = new SQLiteConnection(new SQLitePlatformWinRT(), dbPath))
+            {
+                var recipes = cnx.Query<RecipeFavorite>("Select * from Recipe");
+                return Models.RecipeList.convert(recipes);
+            }
+        }
+
         public void removeRecipeFavorite(int id)
         {
             using (var cnx = new SQLiteConnection(new SQLitePlatformWinRT(), dbPath))

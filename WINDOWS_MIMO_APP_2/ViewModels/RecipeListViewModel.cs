@@ -14,6 +14,8 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
     using Base;
     using System;
     using Newtonsoft.Json;
+    using System.Net.NetworkInformation;
+    using Services.Database;
     public class RecipeListViewModel : ViewModelBase
     {
         private IRecipeService recipeService;
@@ -21,6 +23,7 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
         private INavigationService   navService;
         private DelegateCommand loadRecipeListCommand;
         private ObservableCollection<RecipeList> recipes;
+        private IDbService dbService;
         private bool estado = true;
 
         public bool Estado
@@ -31,10 +34,11 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
        
 
 
-        public RecipeListViewModel(INavigationService navService,IRecipeService recipeService)
+        public RecipeListViewModel(INavigationService navService,IRecipeService recipeService, IDbService dbService)
         {
             this.navService = navService;
             this.recipeService = recipeService;
+            this.dbService = dbService;
             loadRecipeListCommand = new DelegateCommand(LoadRecipeList, null);
             Message = "Welcome to the recipe List page";
         }
@@ -62,13 +66,21 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
 
         private async void LoadRecipeList()
         {
-            var result = await this.recipeService.GetRecipesAsync();
-
-            if (result != null)
+            var result = new List<RecipeList>();
+            if(NetworkInterface.GetIsNetworkAvailable() == true)
+            {
+                Message = "Recipe list";
+                result = await this.recipeService.GetRecipesAsync();             
+            }else
+            {
+                Message = "Favorite recipes";
+                result = this.dbService.getFavoriteRecipeList();
+            }
+            if (result.Count>0)
             {
                 Recipes = new ObservableCollection<RecipeList>(result);
-                Estado = false;
             }
+            Estado = false;
         }
         public DelegateCommand LoadRecipeListCommand
         {

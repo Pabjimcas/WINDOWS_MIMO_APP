@@ -96,6 +96,7 @@ namespace WINDOWS_MIMO_APP_2.Models
             this.score = rf.score;
             this.portions = rf.portions;
         }
+        
         public int id { get; set; }
         public List<Task> tasks { get; set; }
         public List<MeasureIngredient> measureIngredients { get; set; }

@@ -16,6 +16,8 @@
 
         IList<RecipeFavorite> getFavorites();
 
+        List<RecipeList> getFavoriteRecipeList();
+
         bool recipeFavoriteExists(string name);
 
         Recipe getFavoriteRecipe(string name);
