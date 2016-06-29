@@ -15,9 +15,8 @@
 
     <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <TextBlock x:Name="texto" Text="{Binding Message}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="32"/>
-        <Button RelativePanel.Below="texto" x:Name="button" Content="recipe List" Command="{Binding LoadRecipeCommand}" HorizontalAlignment="Center" VerticalAlignment="Center" />
         <ProgressRing IsActive="{Binding Estado}" x:Name="progressRing" Height="190"  Width="190" RelativePanel.AlignHorizontalCenterWithPanel="True"  RelativePanel.AlignVerticalCenterWithPanel="True" />
-        <ListView x:Name="ListRecipes" Opacity="1" ItemsSource ="{Binding Recipes}" RelativePanel.Below="button" IsItemClickEnabled="True" SelectionMode="None">
+        <ListView RelativePanel.Below="texto" x:Name="ListRecipes" Opacity="1" ItemsSource ="{Binding Recipes}" IsItemClickEnabled="True" SelectionMode="None">
             <Interactivity:Interaction.Behaviors>
                 <Core:EventTriggerBehavior EventName="ItemClick">
                     <Core:CallMethodAction MethodName="ListItemClicked" TargetObject="{Binding}" />

@@ -13,8 +13,8 @@
         <Image x:Name="Logo" Source="/Assets/TituloApp.scale-100.png" RelativePanel.AlignHorizontalCenterWithPanel="True" Height="50" />
         <Button x:Name="RandomFavorite" IsEnabled="{Binding ButtonEnabled}" Command="{Binding GoToRecipePageCommand}" RelativePanel.Below="Logo" RelativePanel.AlignHorizontalCenterWithPanel="True">
             <Button.Content>
-                <StackPanel >
-                    <TextBlock x:Name="Title" Text="{Binding Name}" />
+                <StackPanel>
+                    <TextBlock x:Name="Title" Text="{Binding Name}" HorizontalAlignment="Center"/>
                     <Image Source="{Binding Photo}" />
                 </StackPanel>
             </Button.Content>

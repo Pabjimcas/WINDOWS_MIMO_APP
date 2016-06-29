@@ -40,7 +40,6 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
             this.recipeService = recipeService;
             this.dbService = dbService;
             loadRecipeListCommand = new DelegateCommand(LoadRecipeList, null);
-            Message = "Welcome to the recipe List page";
         }
         public void ListItemClicked(object sender, object parameter)
         {
@@ -111,7 +110,6 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
         {
             base.OnNavigatedTo(e);
             this.navService.AppFrame = base.AppFrame;
-            Message = (string)e.Parameter;
             LoadRecipeList();
         }
         public override void OnNavigatedFrom(NavigationEventArgs e)
