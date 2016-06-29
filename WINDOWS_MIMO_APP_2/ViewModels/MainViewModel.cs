@@ -144,7 +144,6 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
         {
             RecipeList item = new RecipeList();
             item.id = randomRecipe.id;
-            item.type = "favorites";
             item.name = randomRecipe.name;
             string json = JsonConvert.SerializeObject(item);
             this.navService.NavigateToRecipePage(json);

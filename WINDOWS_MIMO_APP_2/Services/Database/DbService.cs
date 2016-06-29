@@ -139,11 +139,11 @@ namespace WINDOWS_MIMO_APP_2.Services.Database
             }
         }
 
-        public Recipe getFavoriteRecipe(int id)
+        public Recipe getFavoriteRecipe(string name)
         {
-            RecipeFavorite recipeFavorite = getRecipeFavoriteObject(id);
-            List<TaskFavorite> taskList = getTaskListFavorite(id);
-            List<MeasureIngredientFavorite> measureList = getMeasureListFavorite(id);
+            RecipeFavorite recipeFavorite = getRecipeFavoriteObject(name);
+            List<TaskFavorite> taskList = getTaskListFavorite(recipeFavorite.id);
+            List<MeasureIngredientFavorite> measureList = getMeasureListFavorite(recipeFavorite.id);
             List<IngredientFavorite> ingredientList = new List<IngredientFavorite>();
             foreach (MeasureIngredientFavorite m in measureList)
             {
@@ -191,11 +191,11 @@ namespace WINDOWS_MIMO_APP_2.Services.Database
 
             }
         }
-        public RecipeFavorite getRecipeFavoriteObject(int id)
+        public RecipeFavorite getRecipeFavoriteObject(string name)
         {
             using (var cnx = new SQLiteConnection(new SQLitePlatformWinRT(), dbPath))
             {
-                var recipeFav = cnx.Query<RecipeFavorite>("Select * from Recipe where id = " + id).FirstOrDefault();
+                var recipeFav = cnx.Query<RecipeFavorite>("Select * from Recipe where name = '" + name + "'").FirstOrDefault();
                 return recipeFav;
             }
         }

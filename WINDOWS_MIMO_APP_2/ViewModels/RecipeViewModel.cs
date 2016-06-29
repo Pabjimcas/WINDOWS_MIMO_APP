@@ -69,26 +69,24 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
 
         private void AddToFavoritesExecute()
         {
-            if (!this.dbService.recipeFavoriteExists(recipe.name)){
-                this.dbService.addRecipeFavorite(recipe);
-                this.dialogService.ShowMessage("The Recipe has been saved as favorite ", "Save Favorite");
-                AdvancedFormat = Visibility.Visible;
-            }
-            else
-            {
-                AdvancedFormat = Visibility.Collapsed;
-            }
-
+            this.dbService.addRecipeFavorite(recipe);
+            this.dialogService.ShowMessage("The Recipe has been saved as favorite ", "Save Favorite");
+            AdvancedFormat = Visibility.Collapsed;
         }
 
 
 
         private async void LoadRecipe(RecipeList item)
         {
-            if(item.type != null)
+            bool existRecipe = this.dbService.recipeFavoriteExists(item.name);
+
+
+            if(existRecipe)
             {
-                Recipe = this.dbService.getFavoriteRecipe(item.id);
-            }else
+                Recipe = this.dbService.getFavoriteRecipe(item.name);
+                AdvancedFormat = Visibility.Collapsed;
+            }
+            else
             {
                 var result = await this.recipeService.GetRecipeAsync(item.id);
 
