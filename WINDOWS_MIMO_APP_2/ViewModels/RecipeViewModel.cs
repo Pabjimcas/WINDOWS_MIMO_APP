@@ -95,26 +95,26 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
 
         private async void LoadRecipe(RecipeList item)
         {
-            bool existRecipe = this.dbService.recipeFavoriteExists(item.name);
-
-            if(existRecipe)
+            if(Recipe == null)
             {
-                Recipe = this.dbService.getFavoriteRecipe(item.name);
-                FavoriteButtom = Visibility.Collapsed;
-                NoFavoriteButtom = Visibility.Visible;
-            }
-            else
-            {
-                var result = await this.recipeService.GetRecipeAsync(item.id);
-
-                if (result != null)
+                bool existRecipe = this.dbService.recipeFavoriteExists(item.name);
+                if (existRecipe)
                 {
-                    Recipe = result;
+                    Recipe = this.dbService.getFavoriteRecipe(item.name);
+                    FavoriteButtom = Visibility.Collapsed;
+                    NoFavoriteButtom = Visibility.Visible;
+                }
+                else
+                {
+                    var result = await this.recipeService.GetRecipeAsync(item.id);
+
+                    if (result != null)
+                    {
+                        Recipe = result;
+                    }
                 }
             }
-
-
-            
+           
         }
         public Recipe Recipe
         {
