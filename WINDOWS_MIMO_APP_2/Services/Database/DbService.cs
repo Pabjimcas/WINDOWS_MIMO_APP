@@ -19,6 +19,7 @@ namespace WINDOWS_MIMO_APP_2.Services.Database
         {
             using (var cnx = new SQLiteConnection(new SQLitePlatformWinRT(), dbPath))
             {
+                
                 cnx.CreateTable<RecipeFavorite>();
                 cnx.CreateTable<MeasureIngredientFavorite>();
                 cnx.CreateTable<IngredientFavorite>();
@@ -59,6 +60,7 @@ namespace WINDOWS_MIMO_APP_2.Services.Database
             {
                 try
                 {
+                    
                     int inserted = cnx.Insert(ingref); //will be 1 if successful
                     if (inserted > 0)
                         return ingref.id; //Acording to the documentation for the SQLIte component, the Insert method updates the id by reference
@@ -195,7 +197,7 @@ namespace WINDOWS_MIMO_APP_2.Services.Database
         {
             using (var cnx = new SQLiteConnection(new SQLitePlatformWinRT(), dbPath))
             {
-                var recipeFav = cnx.Query<RecipeFavorite>("Select * from Recipe where name = '" + name + "'").FirstOrDefault();
+                var recipeFav = cnx.Query<RecipeFavorite>("Select * from Recipe where name = ?",name).FirstOrDefault();
                 return recipeFav;
             }
         }
@@ -225,7 +227,10 @@ namespace WINDOWS_MIMO_APP_2.Services.Database
             {
                 try
                 {
-                    var results = cnx.Query<RecipeFavorite>("Select * from Recipe where name = '" + name + "'");
+                   
+                    var list = cnx.Query<RecipeFavorite>("Select * from Recipe");
+                    var results = cnx.Query<RecipeFavorite>("Select * from Recipe where name = ?",name);
+                    
                     if (results.Count() > 0)
                     {
                         return true;
