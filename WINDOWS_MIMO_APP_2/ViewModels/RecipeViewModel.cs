@@ -24,6 +24,7 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
         private IDbService dbService;
         private DelegateCommand goToTaskListPageCommand;
         private DelegateCommand addToFavoritesCommand;
+        private DelegateCommand removeFromFavoritesCommand;
         private Recipe recipe;
         private string photo;
         private List<MeasureIngredient> ingredientList;
@@ -35,12 +36,20 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
         }
 
 
-        private Visibility _advancedFormat = Visibility.Visible;
+        private Visibility favoriteButtom = Visibility.Visible;
+        private Visibility nofavoriteButtom = Visibility.Collapsed;
 
-        public Visibility AdvancedFormat
+
+        public Visibility FavoriteButtom
         {
-            get { return _advancedFormat; }
-            set { _advancedFormat = value; RaisePropertyChanged(); }
+            get { return favoriteButtom; }
+            set { favoriteButtom = value; RaisePropertyChanged(); }
+        }
+
+        public Visibility NoFavoriteButtom
+        {
+            get { return nofavoriteButtom; }
+            set { nofavoriteButtom = value; RaisePropertyChanged(); }
         }
 
 
@@ -59,6 +68,7 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
             this.goToSplitTaskPageCommand = new DelegateCommand(GoToSplitTaskPageExecute);
             this.goToIngredientListPageCommand = new DelegateCommand(GoToIngredientListPageExecute);
             this.addToFavoritesCommand = new DelegateCommand(AddToFavoritesExecute);
+            this.removeFromFavoritesCommand = new DelegateCommand(RemoveFromFavoritesExecute);
             Message = "Welcome to the recipe page";
         }
 
@@ -69,22 +79,29 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
 
         private void AddToFavoritesExecute()
         {
-            this.dbService.addRecipeFavorite(recipe);
-            this.dialogService.ShowMessage("The Recipe has been saved as favorite ", "Save Favorite");
-            AdvancedFormat = Visibility.Collapsed;
+                this.dbService.addRecipeFavorite(recipe);
+                this.dialogService.ShowMessage("The Recipe has been saved as favorite ", "Save Favorite");
+                FavoriteButtom = Visibility.Collapsed;
+            NoFavoriteButtom = Visibility.Visible;
         }
 
-
+        private void RemoveFromFavoritesExecute()
+        {
+            this.dbService.removeRecipeFavorite(recipe.id);
+            this.dialogService.ShowMessage("The Recipe has been removed from favorite ", "Remove Favorite");
+            FavoriteButtom = Visibility.Visible;
+            NoFavoriteButtom = Visibility.Collapsed;
+        }
 
         private async void LoadRecipe(RecipeList item)
         {
             bool existRecipe = this.dbService.recipeFavoriteExists(item.name);
 
-
             if(existRecipe)
             {
                 Recipe = this.dbService.getFavoriteRecipe(item.name);
-                AdvancedFormat = Visibility.Collapsed;
+                FavoriteButtom = Visibility.Collapsed;
+                NoFavoriteButtom = Visibility.Visible;
             }
             else
             {
@@ -130,6 +147,11 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
         public ICommand AddToFavoritesCommand
         {
             get { return this.addToFavoritesCommand; }
+        }
+
+        public ICommand RemoveFromFavoritesCommand
+        {
+            get { return this.removeFromFavoritesCommand; }
         }
 
 
