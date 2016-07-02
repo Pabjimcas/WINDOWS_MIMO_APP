@@ -95,6 +95,8 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Services\TileService\TileService.cs" />
+    <Compile Include="Services\TileService\ITileService.cs" />
     <Compile Include="ViewModels\IngredientListViewModel.cs" />
     <Compile Include="ViewModels\ImagesViewModel.cs" />
     <Compile Include="Views\Converters\ShowPhoto.cs" />
