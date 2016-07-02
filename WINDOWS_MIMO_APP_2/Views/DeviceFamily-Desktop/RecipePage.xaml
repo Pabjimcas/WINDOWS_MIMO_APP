@@ -13,11 +13,23 @@
     <ScrollViewer>
     <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <TextBlock x:Name="texto"  TextWrapping="Wrap" TextAlignment="Center" Text="{Binding Message}" RelativePanel.AlignLeftWithPanel="True"  FontSize="32"  />
-            <Grid></Grid>
-        
-        
-        <Image RelativePanel.Below="texto" Source="{Binding Photo}" x:Name="recipePhoto"/>
-            <Grid RelativePanel.Below="recipePhoto" x:Name="score">
+            <TextBlock RelativePanel.Below="texto" x:Name="title"  Text="{Binding Title,Mode=TwoWay}"  />
+            <Grid x:Name="GridPanel" Background="White" RelativePanel.Below="title">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0" Grid.ColumnSpan="2" Source="{Binding Photo}" x:Name="recipePhoto"/>
+                <StackPanel Grid.Column="2">
+                    <Button x:Name="favorite" Content="Add to Favorite" Command="{Binding AddToFavoritesCommand}"  Visibility="{Binding Path=FavoriteButtom,Mode=TwoWay}" />
+                    <Button x:Name="ingredientList" Content="Ingredient List" Command="{Binding GoToIngredientListPageCommand}"  />
+                    <Button x:Name="button" Content="Task List" Command="{Binding GoToTaskListPageCommand}" />
+                    <Button x:Name="splitTask" Content="Split Task" Command="{Binding GoToSplitTaskPageCommand}" />
+                    <Button Content="Capture" x:Name="PhotoButton" Command="{Binding CaptureImageCommand}" />
+                </StackPanel>
+            </Grid>
+            <Grid RelativePanel.Below="GridPanel" x:Name="score">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="100"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
@@ -25,7 +37,7 @@
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="Score: " Grid.Column="0"></TextBlock>
                 <RatingControl:Rating HorizontalAlignment="Center" VerticalAlignment="Center"   
-                AllowSelectingZero="True" ReadOnly="True"  RelativePanel.Below="recipePhoto"
+                AllowSelectingZero="True" ReadOnly="True"
                 RatingItemCount="5" Value="{Binding Recipe.score}" Grid.Column="1">
                     <RatingControl:Rating.FilledItemStyle>
                         <Style TargetType="RatingControl:RatingItem">
@@ -47,7 +59,7 @@
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="Difficulty: " Grid.Column="0"></TextBlock>
                 <RatingControl:Rating HorizontalAlignment="Center" VerticalAlignment="Center"   
-                AllowSelectingZero="True" ReadOnly="True"  RelativePanel.Below="recipePhoto"
+                AllowSelectingZero="True" ReadOnly="True"  
                 RatingItemCount="5" Value="{Binding Recipe.difficulty}" Grid.Column="1">
                     <RatingControl:Rating.FilledItemStyle>
                         <Style TargetType="RatingControl:RatingItem">
@@ -61,16 +73,6 @@
                     </RatingControl:Rating.UnfilledItemStyle>
                 </RatingControl:Rating>
             </Grid>
-            <Button RelativePanel.AlignBottomWith="recipePhoto" x:Name="favorite" Content="Add to Favorite" Command="{Binding AddToFavoritesCommand}" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding Path=FavoriteButtom,Mode=TwoWay}" />
-            <Button RelativePanel.Below="difficulty" x:Name="ingredientList" Content="Lista de Ingredientes" Command="{Binding GoToIngredientListPageCommand}" VerticalAlignment="Center" />
-
-
-            <Button Content="Capture" x:Name="PhotoButton" Command="{Binding CaptureImageCommand}" />
-        <Button RelativePanel.Below="texto" x:Name="button" Content="Task List" Command="{Binding GoToTaskListPageCommand}" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <TextBlock RelativePanel.Below="favorite" x:Name="title"  Text="{Binding Title,Mode=TwoWay}"  />
-        <Button RelativePanel.Below="title" x:Name="splitTask" Content="Split Task" Command="{Binding GoToSplitTaskPageCommand}" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        
-
-    </RelativePanel>
+        </RelativePanel>
     </ScrollViewer>
 </base:ViewBase>

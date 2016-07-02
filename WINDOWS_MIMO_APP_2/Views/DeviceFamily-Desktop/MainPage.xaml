@@ -9,23 +9,35 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     mc:Ignorable="d">
-    <StackPanel  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Image x:Name="Logo" Source="/Assets/TituloApp.scale-100.png" HorizontalAlignment="Left" Height="60" Margin="20,20,0,0"/>
-        <TextBlock x:Name="Title" Text="{Binding Name}" HorizontalAlignment="Left" FontSize="30" Margin="20" TextWrapping="Wrap"/>
-        <StackPanel Orientation="Horizontal" RelativePanel.Below="Logo">
-            <StackPanel>
-                <Border BorderThickness="3" BorderBrush="Black"  Margin="20,0,0,20" HorizontalAlignment="Left">
-                    <Image Source="{Binding Photo}" />
-                </Border>
-                <Button Content="Ver receta" x:Name="RandomFavorite" IsEnabled="{Binding ButtonEnabled}" Command="{Binding GoToRecipePageCommand}" HorizontalAlignment="Center"/>
+    
+
+    
+
+    <RelativePanel  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Image x:Name="Logo" Source="/Assets/TituloApp.scale-100.png" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True" Height="60" Margin="20,20,0,0"/>
+        <TextBlock x:Name="Title" Text="{Binding Name}" RelativePanel.Below="Logo" RelativePanel.AlignLeftWithPanel="True" FontSize="30" Margin="20" TextWrapping="Wrap"/>
+        <Grid x:Name="GridPanel" Background="White" RelativePanel.Below="Title">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Border Grid.Row="0" Grid.Column="0" x:Name="Image" BorderThickness="3" BorderBrush="Black"  Margin="20,0,20,20" HorizontalAlignment="Left">
+                <Image Source="{Binding Photo}" />
+            </Border>
+            <StackPanel Grid.Row="0" Grid.Column="1"> 
+                <Button Content="Picker" Command="{Binding OpenRecipePictureCommand}" Margin="20" HorizontalAlignment="Left"></Button>
+                <Button Content="Listado de Recetas" Command="{Binding GoToRecipeListPageCommand}" Margin="20" HorizontalAlignment="Left"/>
             </StackPanel>
-            <StackPanel>
-                <Button Content="Picker" Command="{Binding OpenRecipePictureCommand}" Margin="20"></Button>
-                <Button Content="Listado de Recetas" Command="{Binding GoToRecipeListPageCommand}" Margin="20"/>
-            </StackPanel>
-        </StackPanel>
-        
-    </StackPanel>
+            <Button Content="Ver Receta" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" x:Name="RandomFavorite" IsEnabled="{Binding ButtonEnabled}" Command="{Binding GoToRecipePageCommand}"/>
+        </Grid>
+
+
+
+    </RelativePanel>
 
 
 

@@ -18,12 +18,9 @@
                     <Image Source="{Binding Photo}" />
                 </StackPanel>
             </Button.Content>
-        
+
         </Button>
-        <Button Content="Picker" RelativePanel.Below="RandomFavorite" Command="{Binding OpenRecipePictureCommand}"></Button>
+        <Button HorizontalAlignment="Center" Content="Picker" RelativePanel.Below="RandomFavorite" Command="{Binding OpenRecipePictureCommand}"></Button>
         <Button Content="Listado de Recetas" Command="{Binding GoToRecipeListPageCommand}" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Margin="20"/>
     </RelativePanel>
-
-
-
 </base:ViewBase>
