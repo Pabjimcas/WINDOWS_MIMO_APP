@@ -3,32 +3,25 @@
 namespace WINDOWS_MIMO_APP_2.ViewModels
 {
     using Services.NavigationService;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using WINDOWS_MIMO_APP_2.ViewModels.Base;
     using Windows.UI.Xaml.Navigation;
-    using System.Windows.Input;
-    using Models;
-    using Services.Database;
-    using System.Collections.ObjectModel;
-    using Services.DialogService;
-    using Windows.UI.Xaml;
-    using Newtonsoft.Json;
-    using System.Diagnostics;
-    using Windows.Media.Capture;
-    using Windows.Storage.Streams;
-    using Windows.Media.MediaProperties;
-    using Windows.Devices.Sensors;
-    using Windows.Storage.FileProperties;
     public class CaptureImageViewModel : ViewModelBase
     {
         private INavigationService navService;
+        private string recipeName;
+
+        public string RecipeName
+        {
+            get { return recipeName; }
+            set { recipeName = value;
+                RaisePropertyChanged();
+            }
+        }
+
 
         public CaptureImageViewModel(INavigationService navService)
         {
-            this.navService = navService;
+            this.navService = navService; 
         }
 
         public override void OnNavigatedTo(NavigationEventArgs e)
@@ -36,6 +29,7 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
             base.OnNavigatedTo(e);
            
             this.navService.AppFrame = base.AppFrame;
+            RecipeName = e.Parameter as string;
         }
         public override void OnNavigatedFrom(NavigationEventArgs e)
         {

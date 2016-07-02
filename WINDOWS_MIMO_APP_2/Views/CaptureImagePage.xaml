@@ -9,16 +9,11 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Grid Background="White">
-            <CaptureElement x:Name="capturePreview" Stretch="Uniform"/>
-        </Grid>
-        <StackPanel Orientation="Horizontal">
-            <Button Click="InitCamera_Click" Content="Initialize Camera" />
-            <Button Click="StartCapturePreview_Click" Content="Start Capture Preview" />
-            <Button Click="CapturePhoto_Click" Content="Capture Photo"/>
-            <Button Click="StopCapturePreview_Click" Content="Stop Capture Preview" />
-        </StackPanel>
-    </StackPanel>
+    <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <TextBlock x:Name="RecipeTitle" Text="{Binding RecipeName}"/>
+        <CaptureElement x:Name="capturePreview" Stretch="Uniform" Width="320" Height="240"/>
+        <Button Click="CapturePhoto_Click" Content="Capture Photo"/>
+        
+    </RelativePanel>
 
 </base:ViewBase>

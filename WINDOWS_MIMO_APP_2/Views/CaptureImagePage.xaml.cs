@@ -6,14 +6,19 @@ namespace WINDOWS_MIMO_APP_2.Views
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.IO;
     using System.Linq;
     using System.Runtime.InteropServices.WindowsRuntime;
+    using Windows.Devices.Sensors;
     using Windows.Foundation;
     using Windows.Foundation.Collections;
+    using Windows.Graphics.Imaging;
     using Windows.Media.Capture;
     using Windows.Media.MediaProperties;
     using Windows.Storage;
+    using Windows.Storage.FileProperties;
+    using Windows.Storage.Streams;
     using Windows.UI.Xaml;
     using Windows.UI.Xaml.Controls;
     using Windows.UI.Xaml.Controls.Primitives;
@@ -22,55 +27,91 @@ namespace WINDOWS_MIMO_APP_2.Views
     using Windows.UI.Xaml.Media;
     using Windows.UI.Xaml.Media.Imaging;
     using Windows.UI.Xaml.Navigation;
+    using Services.Database;
     using WINDOWS_MIMO_APP2.Views.Base;
-    /// <summary>
-    /// Una página vacía que se puede usar de forma independiente o a la que se puede navegar dentro de un objeto Frame.
-    /// </summary>
+    using System.Threading.Tasks;
+    using ViewModels;
+    using Services.NavigationService;/// <summary>
+                                     /// Una página vacía que se puede usar de forma independiente o a la que se puede navegar dentro de un objeto Frame.
+                                     /// </summary>
     public sealed partial class CaptureImagePage : ViewBase
     {
+        private bool _isInitialized;
+        private StorageFolder _captureFolder = null;
+
         public CaptureImagePage()
         {
             this.InitializeComponent();
+            this.InitCamera();
+            this.storageService = new Services.Database.StorageService();
+            this.navigationService = new NavigationService();
         }
 
         Windows.Media.Capture.MediaCapture captureManager;
+        private StorageService storageService;
+        private NavigationService navigationService;
 
-        async private void InitCamera_Click(object sender, RoutedEventArgs e)
+        private async void InitCamera()
         {
-            captureManager = new MediaCapture();
-            await captureManager.InitializeAsync();
+            try
+            {
+                captureManager = new MediaCapture();
+                await captureManager.InitializeAsync();
+                _isInitialized = true;
+            }
+            catch (UnauthorizedAccessException)
+            {
+                Debug.WriteLine("The app was denied access to the camera");
+            }
+
+            if (_isInitialized)
+            {
+                capturePreview.Source = captureManager;
+                await captureManager.StartPreviewAsync();
+                _captureFolder = await storageService.CreateLocalFolder();
+            }
         }
 
-        async private void StartCapturePreview_Click(object sender, RoutedEventArgs e)
+        private static PhotoOrientation ConvertOrientationToPhotoOrientation(SimpleOrientation orientation)
         {
-            capturePreview.Source = captureManager;
-            await captureManager.StartPreviewAsync();
-        }
-
-        async private void StopCapturePreview_Click(object sender, RoutedEventArgs e)
-        {
-            await captureManager.StopPreviewAsync();
+            switch (orientation)
+            {
+                case SimpleOrientation.Rotated90DegreesCounterclockwise:
+                    return PhotoOrientation.Rotate90;
+                case SimpleOrientation.Rotated180DegreesCounterclockwise:
+                    return PhotoOrientation.Rotate180;
+                case SimpleOrientation.Rotated270DegreesCounterclockwise:
+                    return PhotoOrientation.Rotate270;
+                case SimpleOrientation.NotRotated:
+                default:
+                    return PhotoOrientation.Normal;
+            }
         }
 
         async private void CapturePhoto_Click(object sender, RoutedEventArgs e)
         {
             ImageEncodingProperties imgFormat = ImageEncodingProperties.CreateJpeg();
 
-            // create storage file in local app storage
-            StorageFile file = await ApplicationData.Current.LocalFolder.CreateFileAsync(
-                "TestPhoto.jpg",
-                CreationCollisionOption.GenerateUniqueName);
+            var stream = new InMemoryRandomAccessStream();
 
-            // take photo
-            await captureManager.CapturePhotoToStorageFileAsync(imgFormat, file);
+            await captureManager.CapturePhotoToStreamAsync(imgFormat, stream);
 
-            // Get photo as a BitmapImage
-            /*BitmapImage bmpImage = new BitmapImage(new Uri(file.Path));
+            var name = RecipeTitle.Text;
+            storageService.Save(_captureFolder,name+".jpg",stream);
+            
 
-            // imagePreivew is a <Image> object defined in XAML
-            imagePreivew.Source = bmpImage;*/
+            await captureManager.StopPreviewAsync();
+            if (stream != null)
+            {
+                Frame.GoBack();
+            }
+            
         }
 
+    
 
-    }
+
+
+
+        }
 }
