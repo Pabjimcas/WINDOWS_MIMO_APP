@@ -19,6 +19,7 @@
         void NavigateToSplitTaskPage<T>(T argument);
         void NavigateToImagesPage();
         void NavigateToImagesPage<T>(T argument);
-
+        void NavigateToCaptureImagePage();
+        void NavigateToCaptureImagePage<T>(T argument);
     }
 }

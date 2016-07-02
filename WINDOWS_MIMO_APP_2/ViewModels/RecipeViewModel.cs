@@ -17,6 +17,11 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
     using Windows.UI.Xaml;
     using Newtonsoft.Json;
     using System.Diagnostics;
+    using Windows.Media.Capture;
+    using Windows.Storage.Streams;
+    using Windows.Media.MediaProperties;
+    using Windows.Devices.Sensors;
+    using Windows.Storage.FileProperties;
     public class RecipeViewModel : ViewModelBase
     {
         private string message;
@@ -25,6 +30,8 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
         private IDbService dbService;
         private DelegateCommand goToTaskListPageCommand;
         private DelegateCommand addToFavoritesCommand;
+        private DelegateCommand captureImageCommand;
+
         private Recipe recipe;
         private string photo;
         private List<MeasureIngredient> ingredientList;
@@ -60,7 +67,13 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
             this.goToSplitTaskPageCommand = new DelegateCommand(GoToSplitTaskPageExecute);
             this.goToIngredientListPageCommand = new DelegateCommand(GoToIngredientListPageExecute);
             this.addToFavoritesCommand = new DelegateCommand(AddToFavoritesExecute);
+            this.captureImageCommand = new DelegateCommand(CaptureImageExecute);
             Message = "Welcome to the recipe page";
+        }
+
+        private void CaptureImageExecute()
+        {
+            this.navService.NavigateToCaptureImagePage(Recipe.name);
         }
 
         private void GoToIngredientListPageExecute()
@@ -127,6 +140,13 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
         {
             get { return this.addToFavoritesCommand; }
         }
+
+        public ICommand CaptureImageCommand
+        {
+            get { return this.captureImageCommand; }
+        }
+
+
 
         public string Message
         {

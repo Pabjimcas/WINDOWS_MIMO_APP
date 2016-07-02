@@ -97,6 +97,7 @@
     </Compile>
     <Compile Include="ViewModels\IngredientListViewModel.cs" />
     <Compile Include="ViewModels\ImagesViewModel.cs" />
+    <Compile Include="ViewModels\CaptureImageViewModel.cs" />
     <Compile Include="Views\Converters\ShowPhoto.cs" />
     <Compile Include="Views\Converters\ShowTime.cs" />
     <Compile Include="Views\Converters\SecondsToMinutes.cs" />
@@ -119,6 +120,9 @@
     <Compile Include="ViewModels\RecipeListViewModel.cs" />
     <Compile Include="ViewModels\RecipeViewModel.cs" />
     <Compile Include="Views\Base\ViewBase.cs" />
+    <Compile Include="Views\CaptureImagePage.xaml.cs">
+      <DependentUpon>CaptureImagePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -183,6 +187,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\DeviceFamily-Mobile\MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\CaptureImagePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

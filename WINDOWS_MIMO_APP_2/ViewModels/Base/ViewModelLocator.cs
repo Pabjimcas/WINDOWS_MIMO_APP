@@ -28,6 +28,7 @@
             builder.RegisterType<TaskViewModel>();
             builder.RegisterType<PivotTaskViewModel>();
             builder.RegisterType<ImagesViewModel>();
+            builder.RegisterType<CaptureImageViewModel>();
 
             this.container = builder.Build();
         }
@@ -69,6 +70,10 @@
         public ImagesViewModel ImagesVM
         {
             get { return this.container.Resolve<ImagesViewModel>(); }
+        }
+        public CaptureImageViewModel CaptureImageVM
+        {
+            get { return this.container.Resolve<CaptureImageViewModel>(); }
         }
 
     }

@@ -86,5 +86,16 @@
             if (AppFrame != null)
                 AppFrame.Navigate(typeof(ImagesPage), argument);
         }
+
+        public void NavigateToCaptureImagePage()
+        {
+            NavigateToCaptureImagePage<Object>(null);
+        }
+
+        public void NavigateToCaptureImagePage<T>(T argument)
+        {
+            if (AppFrame != null)
+                AppFrame.Navigate(typeof(CaptureImagePage), argument);
+        }
     }
 }
