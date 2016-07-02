@@ -22,11 +22,13 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
     using Windows.Media.MediaProperties;
     using Windows.Devices.Sensors;
     using Windows.Storage.FileProperties;
+    using Services.TileService;
     public class RecipeViewModel : ViewModelBase
     {
         private string message;
         private INavigationService   navService;
         private IRecipeService recipeService;
+        private ITileService tileService;
         private IDbService dbService;
         private DelegateCommand goToTaskListPageCommand;
         private DelegateCommand addToFavoritesCommand;
@@ -35,6 +37,11 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
         private Recipe recipe;
         private string photo;
         private List<MeasureIngredient> ingredientList;
+        private string title;
+        private DelegateCommand goToSplitTaskPageCommand;
+        private IDialogService dialogService;
+        private DelegateCommand goToIngredientListPageCommand;
+        private Visibility favoriteButtom = Visibility.Visible;
 
         public List<MeasureIngredient> IngredientList
         {
@@ -43,7 +50,7 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
         }
 
 
-        private Visibility favoriteButtom = Visibility.Visible;
+        
 
         public Visibility FavoriteButtom
         {
@@ -52,17 +59,15 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
         }
 
 
-        private string title;
-        private DelegateCommand goToSplitTaskPageCommand;
-        private IDialogService dialogService;
-        private DelegateCommand goToIngredientListPageCommand;
+      
 
-        public RecipeViewModel(INavigationService navService, IRecipeService recipeService, IDbService dbService,IDialogService dialogService)
+        public RecipeViewModel(INavigationService navService, IRecipeService recipeService, IDbService dbService,IDialogService dialogService,ITileService tileService)
         {
             this.navService = navService;
             this.recipeService = recipeService;
             this.dbService = dbService;
             this.dialogService = dialogService;
+            this.tileService = tileService;
             this.goToTaskListPageCommand = new DelegateCommand(GoToTaskListPageExecute);
             this.goToSplitTaskPageCommand = new DelegateCommand(GoToSplitTaskPageExecute);
             this.goToIngredientListPageCommand = new DelegateCommand(GoToIngredientListPageExecute);
@@ -85,6 +90,7 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
         {
                 this.dbService.addRecipeFavorite(recipe);
                 this.dialogService.ShowMessage("The Recipe has been saved as favorite ", "Save Favorite");
+                tileService.CreateRecipeTile(recipe);
                 FavoriteButtom = Visibility.Collapsed;
         }
 

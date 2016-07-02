@@ -4,6 +4,7 @@
     using Services.Database;
     using Services.DialogService;
     using Services.NavigationService;
+    using Services.TileService;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -20,6 +21,7 @@
             builder.RegisterType<RecipeService>().As<IRecipeService>();
             builder.RegisterType<DialogService>().As<IDialogService>();
             builder.RegisterType<DbService>().As<IDbService>();
+            builder.RegisterType<TileService>().As<ITileService>();
             builder.RegisterType<MainViewModel>();
             builder.RegisterType<RecipeViewModel>();
             builder.RegisterType<RecipeListViewModel>();
