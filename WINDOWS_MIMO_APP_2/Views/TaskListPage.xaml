@@ -14,7 +14,7 @@
 
     <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <TextBlock x:Name="texto" TextWrapping="Wrap" TextAlignment="Center" RelativePanel.AlignHorizontalCenterWithPanel="True" Text="{Binding RecipeName}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="32"/>
-        <TextBlock Margin="10,0,0,0" x:Name="task" Text="Pasos" RelativePanel.Below="texto" />
+        <TextBlock Margin="10,0,0,0" x:Name="task" Text="Pasos" RelativePanel.Below="texto" FontWeight="Bold" />
         <ProgressRing RelativePanel.Below="task" x:Name="progress" IsActive="{Binding Estado}" />
         <ListView x:Name="ListTask" Opacity="1" ItemsSource ="{Binding TaskList}" RelativePanel.Below="progress" IsItemClickEnabled="True" SelectionMode="None">
             <Interactivity:Interaction.Behaviors>

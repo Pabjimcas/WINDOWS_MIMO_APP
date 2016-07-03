@@ -14,17 +14,21 @@
     mc:Ignorable="d">
 
     <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock x:Name="texto" Text="{Binding Message}" TextWrapping="WrapWholeWords" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="32"/>
-       <ListView x:Name="ListIngredients" Opacity="1" ItemsSource ="{Binding Ingredients}" RelativePanel.Below="texto">
+        <TextBlock x:Name="texto" Text="{Binding Message}" TextWrapping="WrapWholeWords" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="32" Margin="20"/>
+        <ScrollViewer RelativePanel.Below="texto" Width="500" Margin="0,0,0,20"  >
+            <ListView x:Name="ListIngredients" Opacity="1" ItemsSource ="{Binding Ingredients}" >
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid>
+                    <Grid Margin="0,10,0,0">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"></RowDefinition>
                             <RowDefinition Height="*"></RowDefinition>
                         </Grid.RowDefinitions>
-                        <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding ingredient.name}"></TextBlock>
-                        <TextBlock Grid.Column="1" Grid.Row="1" TextWrapping="WrapWholeWords">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Grid.Row="0" Text="{Binding ingredient.name}" FontWeight="Bold"></TextBlock>
+                        <TextBlock Grid.Column="0" Grid.Row="1" TextWrapping="WrapWholeWords">
                             <Run Text="Cantidad necesaria: "></Run>
                             <Run Text="{Binding quantity}"></Run>
                             <Run Text="{Binding measure}"></Run>
@@ -33,5 +37,6 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        </ScrollViewer>
     </RelativePanel>
 </base:ViewBase>

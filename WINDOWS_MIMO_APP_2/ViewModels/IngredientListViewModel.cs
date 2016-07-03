@@ -24,7 +24,7 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
         public IngredientListViewModel(INavigationService navService, IRecipeService recipeService)
         {
             this.navService = navService;
-            Message = "List of Recipe ingredients";
+            Message = "Ingredientes Necesarios";
         }
 
         public string Message

@@ -18,8 +18,8 @@
 
     <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <StackPanel x:Name="LayoutRoot" Background="Transparent">
-            <TextBlock x:Name="texto" TextWrapping="Wrap" HorizontalAlignment="Left" Text="{Binding RecipeName}" FontSize="32"/>
-            <FlipView ItemsSource="{Binding TaskList}">
+            <TextBlock x:Name="texto" TextWrapping="Wrap" HorizontalAlignment="Left" Text="{Binding RecipeName}" FontSize="32" Margin="20"/>
+            <FlipView ItemsSource="{Binding TaskList}" Opacity="1">
                 <FlipView.ItemTemplate>
                     <DataTemplate>
                         <Grid>

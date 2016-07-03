@@ -8,6 +8,28 @@
     
     
     <Application.Resources>
+        <Style x:Key="RoundedButtonStyle" TargetType="Button" >
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="15" Background="DarkCyan" BorderThickness="1" Padding="2" >
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13" Margin="5" FontWeight="Bold" Foreground="White"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="RoundedButtonFavoriteStyle" TargetType="Button" >
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="15" Background="Magenta" BorderThickness="1" Padding="2" >
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13" Margin="5" FontWeight="Bold" Foreground="White"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <viewmodel:ViewModelLocator x:Name="vmLocator" x:Key="Locator"/>
     </Application.Resources>
     

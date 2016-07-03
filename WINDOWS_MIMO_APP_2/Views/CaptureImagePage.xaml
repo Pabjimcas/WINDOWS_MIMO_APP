@@ -10,9 +10,9 @@
     mc:Ignorable="d">
 
     <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock x:Name="RecipeTitle" Text="{Binding RecipeName}" RelativePanel.Above="capturePreview" RelativePanel.AlignHorizontalCenterWithPanel="True"/>
+        <TextBlock x:Name="RecipeTitle" Text="{Binding RecipeName}"  FontSize="30" Margin="20" FontWeight="Bold" RelativePanel.Above="capturePreview" RelativePanel.AlignHorizontalCenterWithPanel="True"/>
         <CaptureElement RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" x:Name="capturePreview" Stretch="Uniform" Height="300"/>
-        <Button Click="CapturePhoto_Click" Content="Capture Photo" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="capturePreview" />
+        <Button Click="CapturePhoto_Click" Margin="20" Style="{StaticResource RoundedButtonStyle}" Content="¡Di patata!" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="capturePreview" />
 
     </RelativePanel>
 

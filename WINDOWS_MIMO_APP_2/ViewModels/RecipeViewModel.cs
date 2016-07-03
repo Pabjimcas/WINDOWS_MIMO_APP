@@ -121,7 +121,7 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
             {
                 recipe = value;
                 Message = recipe.name;
-                Title = recipe.author;
+                Title = "by "+recipe.author;
                 Photo = recipe.photo;
                 TaskList = recipe.tasks;
                 IngredientList = recipe.measureIngredients;

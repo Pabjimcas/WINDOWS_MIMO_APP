@@ -11,7 +11,7 @@
 
     <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <StackPanel x:Name="LayoutRoot" Background="Transparent">
-            <TextBlock x:Name="texto" TextWrapping="Wrap" TextAlignment="Center" Text="{Binding Title}" FontSize="32"/>
+            <TextBlock x:Name="texto" TextWrapping="Wrap" TextAlignment="Center" Text="{Binding Title}" FontSize="32" Margin="20" />
             <FlipView ItemsSource="{Binding ImageList}">
                 <FlipView.ItemTemplate>
                     <DataTemplate>

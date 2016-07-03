@@ -68,11 +68,11 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
             var result = new List<RecipeList>();
             if(NetworkInterface.GetIsNetworkAvailable() == true)
             {
-                Message = "Recipe list";
+                Message = "Listado de recetas";
                 result = await this.recipeService.GetRecipesAsync();             
             }else
             {
-                Message = "Favorite recipes";
+                Message = "Tus recetas favoritas";
                 result = this.dbService.getFavoriteRecipeList();
             }
             if (result.Count>0)
