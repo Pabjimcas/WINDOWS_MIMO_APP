@@ -30,9 +30,9 @@
                 
                 <StackPanel Grid.Column="2" Grid.Row="0">
                     <Button x:Name="ingredientList" HorizontalAlignment="Center" Margin="0,0,0,20" Style="{StaticResource RoundedButtonStyle}" Content="Lista de Ingredientes" Command="{Binding GoToIngredientListPageCommand}"  />
-                    <Button x:Name="button" HorizontalAlignment="Center" Margin="0,0,0,20"  Style="{StaticResource RoundedButtonStyle}" Content="Task List" Command="{Binding GoToTaskListPageCommand}" />
-                    <Button x:Name="splitTask" HorizontalAlignment="Center" Margin="0,0,0,20"  Style="{StaticResource RoundedButtonStyle}" Content="Split Task" Command="{Binding GoToSplitTaskPageCommand}" />
-                    <Button Content="Capture" HorizontalAlignment="Center" Margin="0,0,0,20"  Style="{StaticResource RoundedButtonStyle}" x:Name="PhotoButton" Command="{Binding CaptureImageCommand}" />
+                    <Button x:Name="button" HorizontalAlignment="Center" Margin="0,0,0,20"  Style="{StaticResource RoundedButtonStyle}" Content="Pasos" Command="{Binding GoToTaskListPageCommand}" />
+                    <Button x:Name="splitTask" HorizontalAlignment="Center" Margin="0,0,0,20"  Style="{StaticResource RoundedButtonStyle}" Content="Paso a paso" Command="{Binding GoToSplitTaskPageCommand}" />
+                    <Button Content="Tomar fotos" HorizontalAlignment="Center" Margin="0,0,0,20"  Style="{StaticResource RoundedButtonStyle}" x:Name="PhotoButton" Command="{Binding CaptureImageCommand}" />
                 </StackPanel>
                 <RelativePanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
                     <Grid x:Name="score" Margin="20,0,0,0">

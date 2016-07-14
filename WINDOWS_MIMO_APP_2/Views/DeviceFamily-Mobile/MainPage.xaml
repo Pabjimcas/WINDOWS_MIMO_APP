@@ -12,16 +12,16 @@
     
     <RelativePanel  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Image x:Name="Logo" Source="/Assets/TituloApp.scale-100.png" RelativePanel.AlignHorizontalCenterWithPanel="True" Height="50" />
-        <Button x:Name="RandomFavorite" IsEnabled="{Binding ButtonEnabled}" Command="{Binding GoToRecipePageCommand}" RelativePanel.Below="Logo" RelativePanel.AlignHorizontalCenterWithPanel="True" Margin="20">
+        <Button Style="{StaticResource RoundedButtonStyle}" x:Name="RandomFavorite" IsEnabled="{Binding ButtonEnabled}" Command="{Binding GoToRecipePageCommand}" RelativePanel.Below="Logo" RelativePanel.AlignHorizontalCenterWithPanel="True" Margin="20">
             <Button.Content>
-                <StackPanel>
-                    <TextBlock x:Name="Title" Text="{Binding Name}" HorizontalAlignment="Center"/>
+                <StackPanel >
+                    <TextBlock x:Name="Title" Text="{Binding Name}" TextWrapping="WrapWholeWords" HorizontalAlignment="Center" FontSize="20" Margin="5"/>
                     <Image Source="{Binding Photo}" />
                 </StackPanel>
             </Button.Content>
 
         </Button>
-        <Button RelativePanel.AlignHorizontalCenterWithPanel="True" Content="Picker" RelativePanel.Below="RandomFavorite" Command="{Binding OpenRecipePictureCommand}"></Button>
-        <Button Content="Listado de Recetas" Command="{Binding GoToRecipeListPageCommand}" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Margin="20"/>
+        <Button Style="{StaticResource RoundedButtonStyle}" RelativePanel.AlignHorizontalCenterWithPanel="True" Content="Tus imágenes" RelativePanel.Below="RandomFavorite" Command="{Binding OpenRecipePictureCommand}"></Button>
+        <Button Style="{StaticResource RoundedButtonStyle}" Content="Listado de Recetas" Command="{Binding GoToRecipeListPageCommand}" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Margin="20"/>
     </RelativePanel>
 </base:ViewBase>

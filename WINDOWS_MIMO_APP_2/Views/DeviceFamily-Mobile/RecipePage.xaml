@@ -12,8 +12,8 @@
 
     <ScrollViewer>
     <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock x:Name="texto"  TextWrapping="Wrap" TextAlignment="Center" Text="{Binding Message}" RelativePanel.AlignHorizontalCenterWithPanel="True" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="32"  />
-        <TextBlock RelativePanel.Below="favorite" x:Name="title"  Text="{Binding Title,Mode=TwoWay}"  />
+        <TextBlock x:Name="texto"  TextWrapping="Wrap" TextAlignment="Center" Text="{Binding Message}" RelativePanel.AlignHorizontalCenterWithPanel="True" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"  FontWeight="Bold"/>
+        <TextBlock RelativePanel.Below="favorite" x:Name="title"  Text="{Binding Title,Mode=TwoWay}"  HorizontalAlignment="Center" Margin="10"/>
 
         <Image RelativePanel.Below="ingredientList" Source="{Binding Photo}" x:Name="recipePhoto"/>
 
@@ -23,19 +23,23 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
               
             </Grid.ColumnDefinitions>
-            <TextBlock Text="Score: " Grid.Column="0"></TextBlock>
-            <RatingControl:Rating HorizontalAlignment="Center" VerticalAlignment="Center"   
+            <TextBlock Text="Score: " Grid.Column="0" VerticalAlignment="Center" Margin="20,0,0,0"></TextBlock>
+            <RatingControl:Rating HorizontalAlignment="Left" VerticalAlignment="Center"   
                 AllowSelectingZero="True" ReadOnly="True"  RelativePanel.Below="recipePhoto"
-                RatingItemCount="5" Value="{Binding Recipe.score}" Grid.Column="1">
+                RatingItemCount="5" Value="{Binding Recipe.score}" Grid.Column="1" Width="150">
                 <RatingControl:Rating.FilledItemStyle>
                     <Style TargetType="RatingControl:RatingItem">
                         <Setter Property="Background" Value="Goldenrod"/>
-                    </Style>
+                            <Setter Property="Width" Value="20"/> 
+                            <Setter Property="Height" Value="20"/>
+                        </Style>
                 </RatingControl:Rating.FilledItemStyle>
                 <RatingControl:Rating.UnfilledItemStyle>
                     <Style TargetType="RatingControl:RatingItem">
-                        <Setter Property="Background" Value="Black"/>
-                    </Style>
+                        <Setter Property="Background" Value="Beige"/>
+                            <Setter Property="Width" Value="20"/>
+                            <Setter Property="Height" Value="20"/>
+                        </Style>
                 </RatingControl:Rating.UnfilledItemStyle>
             </RatingControl:Rating>
         </Grid>
@@ -45,27 +49,42 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
 
             </Grid.ColumnDefinitions>
-            <TextBlock Text="Difficulty: " Grid.Column="0"></TextBlock>
-            <RatingControl:Rating HorizontalAlignment="Center" VerticalAlignment="Center"   
+                <TextBlock Text="Difficulty: " Grid.Column="0" VerticalAlignment="Center" Margin="20,0,0,0"></TextBlock>
+            <RatingControl:Rating HorizontalAlignment="Left" VerticalAlignment="Center"   
                 AllowSelectingZero="True" ReadOnly="True"  RelativePanel.Below="recipePhoto"
-                RatingItemCount="5" Value="{Binding Recipe.difficulty}" Grid.Column="1">
+                RatingItemCount="5" Value="{Binding Recipe.difficulty}" Grid.Column="1" Width="150">
                 <RatingControl:Rating.FilledItemStyle>
                     <Style TargetType="RatingControl:RatingItem">
-                        <Setter Property="Background" Value="Goldenrod"/>
-                    </Style>
+                        <Setter Property="Background" Value="Red"/>
+                            <Setter Property="Width" Value="20"/>
+                            <Setter Property="Height" Value="20"/>
+                        </Style>
                 </RatingControl:Rating.FilledItemStyle>
                 <RatingControl:Rating.UnfilledItemStyle>
-                    <Style TargetType="RatingControl:RatingItem">
-                        <Setter Property="Background" Value="Black"/>
-                    </Style>
-                </RatingControl:Rating.UnfilledItemStyle>
+                        <Style TargetType="RatingControl:RatingItem">
+                            <Setter Property="Background" Value="Pink"/>
+                            <Setter Property="Width" Value="20"/>
+                            <Setter Property="Height" Value="20"/>
+                        </Style>
+                    </RatingControl:Rating.UnfilledItemStyle>
             </RatingControl:Rating>
         </Grid>
-            <Button HorizontalAlignment="Center" x:Name="favorite" Content="Add to Favorite" Command="{Binding AddToFavoritesCommand}"  Visibility="{Binding Path=FavoriteButtom,Mode=TwoWay}" />
-            <Button HorizontalAlignment="Center" x:Name="ingredientList" Content="Ingredient List" Command="{Binding GoToIngredientListPageCommand}"  />
-            <Button HorizontalAlignment="Center" x:Name="button" Content="Task List" Command="{Binding GoToTaskListPageCommand}" />
-            <Button HorizontalAlignment="Center" x:Name="splitTask" Content="Split Task" Command="{Binding GoToSplitTaskPageCommand}" />
-            <Button HorizontalAlignment="Center" Content="Capture" x:Name="PhotoButton" Command="{Binding CaptureImageCommand}" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Button Style="{StaticResource RoundedButtonStyle}" Margin="5" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Stretch" x:Name="ingredientList" Content="Lista de ingredientes" Command="{Binding GoToIngredientListPageCommand}"  />
+                <Button Style="{StaticResource RoundedButtonStyle}" Margin="5" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Stretch" x:Name="button" Content="Pasos" Command="{Binding GoToTaskListPageCommand}" />
+                <Button Style="{StaticResource RoundedButtonStyle}" Margin="5" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch" x:Name="splitTask" Content="Paso a paso" Command="{Binding GoToSplitTaskPageCommand}" />
+                <Button Style="{StaticResource RoundedButtonStyle}" Margin="5" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" Content="Tomar foto" x:Name="PhotoButton" Command="{Binding CaptureImageCommand}" />
+            </Grid>
+            <Button Style="{StaticResource RoundedButtonFavoriteStyle}" HorizontalAlignment="Center" x:Name="favorite" Content="Añadir favorito" Command="{Binding AddToFavoritesCommand}"  Visibility="{Binding Path=FavoriteButtom,Mode=TwoWay}" />
         </StackPanel>
     </ScrollViewer>
 </base:ViewBase>

@@ -66,14 +66,17 @@ namespace WINDOWS_MIMO_APP_2.ViewModels
         private async void LoadRecipeList()
         {
             var result = new List<RecipeList>();
+            
             if(NetworkInterface.GetIsNetworkAvailable() == true)
             {
                 Message = "Listado de recetas";
                 result = await this.recipeService.GetRecipesAsync();             
             }else
             {
-                Message = "Tus recetas favoritas";
-                result = this.dbService.getFavoriteRecipeList();
+                Message = "Tus recetas favoritas sin conexion";
+                //TODO borrar esta linea 
+                result = await this.recipeService.GetRecipesAsync();
+                //result = this.dbService.getFavoriteRecipeList();
             }
             if (result.Count>0)
             {

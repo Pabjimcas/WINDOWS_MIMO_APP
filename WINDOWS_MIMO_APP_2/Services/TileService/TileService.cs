@@ -8,155 +8,65 @@
     using Models;
     using Windows.UI.StartScreen;
     using NotificationsExtensions;
+    using Windows.UI;
+    using Windows.Data.Xml.Dom;
     public class TileService : ITileService
     {
         public async System.Threading.Tasks.Task CreateRecipeTile(Recipe recipe)
         {
-            var tileContent = new TileContent()
-            {
-                Visual = new TileVisual()
-                {
-                    TileSmall = CreateSmallTile(recipe),
-                   TileMedium = CreateMediumTile(recipe),
-                   TileLarge = CreateLargeTile(recipe),
-                    TileWide = CreateWideTile(recipe)
-                }
-            };
+            
             string id = Guid.NewGuid().ToString();
-            //SecondaryTile tile2 = new SecondaryTile(id, "OtakuCook", "tileargs", new Uri("ms-appx:///Assets/Wide310x150Logo.scale-200.png"), TileSize.Wide310x150);
-            
-            SecondaryTile tile = new SecondaryTile(id);
-            tile.DisplayName = "OtakuCook";
-            tile.Arguments = "tileargs";
-            tile.VisualElements.Wide310x150Logo = new Uri("ms-appx:///Assets/Wide310x150Logo.scale-200.png");
-            tile.VisualElements.Square150x150Logo = new Uri("ms-appx:///Assets/Square150x150Logo.scale-200.png");
-            
-            //SecondaryTile tile = new SecondaryTile(id,"My awesome tile!","tileargs",new Uri("ms-appx:///Assets/Wide310x150Logo.scale-200.png"),TileSize.Wide310x150);
+            SecondaryTile tile2 = new SecondaryTile(id,"OtakuCook"," ", new Uri("ms-appx:///Assets/Wide310x150Logo.scale-200.png"), TileSize.Wide310x150);
 
-            var result = await tile.RequestCreateAsync();
+           
+            tile2.VisualElements.Wide310x150Logo = new Uri("ms-appx:///Assets/Wide310x150Logo.scale-200.png"); ;
+            tile2.VisualElements.ShowNameOnWide310x150Logo = true;
+
+            tile2.VisualElements.ForegroundText = ForegroundText.Light;
+            //TO DO: Not hardcode color here
+            tile2.VisualElements.BackgroundColor = Color.FromArgb(50, 0, 100, 0);
+          
+
+            var result = await tile2.RequestCreateAsync();
             if (result)
             {
-                var updater = Windows.UI.Notifications.TileUpdateManager.CreateTileUpdaterForApplication(id);
-                updater.Update(new TileNotification(tileContent.GetXml()));
+                UpdateSecondaryTile(id, recipe.name, recipe.photo);
             }
 
         
         }
-
-        private static TileBinding CreateWideTile(Recipe recipe)
+        public void UpdateSecondaryTile(string id, string title, string imageURL)
         {
-            return new TileBinding()
+            if (SecondaryTile.Exists(id))
             {
-                Content = new TileBindingContentAdaptive()
-                {
-                    Children =
-                            {
-                                new AdaptiveImage()
-                                {
-                                    Source = recipe.photo,
-                                    HintAlign = AdaptiveImageAlign.Center,
-                                    HintCrop = AdaptiveImageCrop.Circle,
-                                    HintRemoveMargin = true
+                var tileXmlString = BuildTileXml(title, imageURL);
 
-                                },
-                                new AdaptiveText()
-                                {
-                                    Text = recipe.name,
-                                    HintAlign = AdaptiveTextAlign.Center,
-                                    HintMaxLines = 1,
-                                    HintStyle = AdaptiveTextStyle.Header,
+                XmlDocument xmlDocument = new XmlDocument();
+                xmlDocument.LoadXml(tileXmlString);
 
-                                }
-                            }
-                }
-            };
+                TileNotification tileNotification = new TileNotification(xmlDocument);
+                TileUpdateManager.CreateTileUpdaterForSecondaryTile(id).Update(tileNotification);
+            }
         }
 
-        private static TileBinding CreateLargeTile(Recipe recipe)
+
+        private string BuildTileXml(string title, string imageURL)
         {
-            return new TileBinding()
-            {
-                Content = new TileBindingContentAdaptive()
-                {
-                    Children =
-                            {
-                                new AdaptiveImage()
-                                {
-                                    Source = recipe.photo,
-                                    HintAlign = AdaptiveImageAlign.Center,
-                                    HintCrop = AdaptiveImageCrop.Circle,
-                                    HintRemoveMargin = true
-                                    
-                                },
-                                new AdaptiveText()
-                                {
-                                    Text = recipe.name,
-                                    HintAlign = AdaptiveTextAlign.Center,
-                                    HintMaxLines = 1,
-                                    HintStyle = AdaptiveTextStyle.Header,
-                                  
-                                }
-                            }
-                }
-            };
+            return string.Format(@"<tile>
+                         <visual version='2'>
+                             <binding template='TileSquarePeekImageAndText01' fallback='TileSquare150x150PeekImageAndText01'>
+                                <image placement='peek' hint-overlay='50' src='{0}' id='1'/>
+                                <text id='1'>{1}</text>
+                                
+                            </binding>
+                            <binding template='TileWidePeekImage01' fallback='TileWide310x150PeekImage01'>
+                                <image placement='peek' hint-overlay='50' src='{0}' id='1'/>
+                                <text id='1'>{1}</text>
+                       
+                            </binding>
+                        </visual>
+                    </tile>", imageURL, title);
         }
-
-        private static TileBinding CreateMediumTile(Recipe recipe)
-        {
-            return new TileBinding()
-            {
-                Content = new TileBindingContentAdaptive()
-                {
-                    Children =
-                            {
-                                new AdaptiveImage()
-                                {
-                                    Source = recipe.photo,
-                                    HintAlign = AdaptiveImageAlign.Center,
-                                    HintCrop = AdaptiveImageCrop.Circle,
-                                    HintRemoveMargin = true
-
-                                },
-                                new AdaptiveText()
-                                {
-                                    Text = recipe.name,
-                                    HintAlign = AdaptiveTextAlign.Center,
-                                    HintMaxLines = 1,
-                                    HintStyle = AdaptiveTextStyle.Header,
-
-                                }
-                            }
-                }
-            };
-        }
-
-        private static TileBinding CreateSmallTile(Recipe recipe)
-        {
-            return new TileBinding()
-            {
-                Content = new TileBindingContentAdaptive()
-                {
-                    Children =
-                            {
-                                new AdaptiveImage()
-                                {
-                                    Source = recipe.photo,
-                                    HintAlign = AdaptiveImageAlign.Center,
-                                    HintCrop = AdaptiveImageCrop.Circle,
-                                    HintRemoveMargin = true
-
-                                },
-                                new AdaptiveText()
-                                {
-                                    Text = recipe.name,
-                                    HintAlign = AdaptiveTextAlign.Center,
-                                    HintMaxLines = 1,
-                                    HintStyle = AdaptiveTextStyle.Header,
-
-                                }
-                            }
-                }
-            };
-        }
+       
     }
 }
